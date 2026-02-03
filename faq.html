@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sıkça Sorulan Sorular - DigiMarket</title>
+    <meta name="description" content="DigiMarket hakkında merak ettikleriniz ve sıkça sorulan sorular.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="_footer.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">DigiMarket</span>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Ana Sayfa</a>
+                    <div class="nav-dropdown">
+                        <a href="products.html" class="nav-link">Ürünler</a>
+                        <div class="dropdown-menu">
+                            <a href="ebooks.html" class="dropdown-item">📚 E-Kitaplar</a>
+                            <a href="courses.html" class="dropdown-item">🎓 Kurslar</a>
+                            <a href="software.html" class="dropdown-item">💻 Yazılımlar</a>
+                            <a href="templates.html" class="dropdown-item">🎨 Şablonlar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-actions">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Ürün ara..." onkeyup="handleSearch(event)">
+                        <button class="search-btn" onclick="performSearch()">🔍</button>
+                    </div>
+                    <div id="authButtons">
+                        <button class="btn-primary" id="loginBtn">Giriş Yap</button>
+                        <button class="btn-primary" id="registerBtn">Kayıt Ol</button>
+                    </div>
+                    <a href="profile.html" class="btn-secondary hidden" id="userBtn">
+                        <span>👤</span>
+                        <span id="userBtnName">Kullanıcı</span>
+                    </a>
+                    <button class="btn-primary cart-btn" id="cartBtn">
+                        <span>🛒</span>
+                        Sepet
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Sıkça Sorulan Sorular</h1>
+            <p class="page-description">Merak ettikleriniz ve yardım için sık sorulan sorular</p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="faq-categories">
+                <h2 class="category-title">📦 Ürün ve Satın Alma</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Ürünleri nasıl satın alabilirim?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Ürün satın almak için şu adımları takip edin:</p>
+                            <ol>
+                                <li>Ürünler sayfasından istediğiniz ürünü seçin</li>
+                                <li>"Sepete Ekle" butonuna tıklayın</li>
+                                <li>Sepet ikonuna tıklayarak sepetinizi görüntüleyin</li>
+                                <li>"Ödemeye Geç" butonuna basın</li>
+                                <li>Ödeme bilgilerinizi girin ve işlemi tamamlayın</li>
+                                <li>Ürünleriniz anında e-posta adresinize gönderilir</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Hangi ödeme yöntemlerini kabul ediyorsunuz?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Şu ödeme yöntemlerini kabul ediyoruz:</p>
+                            <ul>
+                                <li>Kredi Kartı (Visa, MasterCard, American Express)</li>
+                                <li>Banka Kartı</li>
+                                <li>PayPal</li>
+                                <li>Havale/EFT (büyük siparişler için)</li>
+                            </ul>
+                            <p>Tüm ödemeler 256-bit SSL şifreleme ile korunmaktadır.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Ürünlere ne kadar süre erişebilirim?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Satın aldığınız tüm dijital ürünlere <strong>ömür boyu</strong> erişim hakkınız
+                                bulunmaktadır. Ürünlerin güncellemeleri de ücretsiz olarak size sunulur.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Toplu alımlarda indirim var mı?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Evet! Toplu alımlarda özel indirimler sunuyoruz:</p>
+                            <ul>
+                                <li>3-5 ürün: %10 indirim</li>
+                                <li>6-10 ürün: %15 indirim</li>
+                                <li>10+ ürün: %20 indirim</li>
+                            </ul>
+                            <p>Kurumsal alımlar için lütfen bizimle iletişime geçin.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="category-title">🔒 Güvenlik ve Gizlilik</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Ödeme güvenli mi?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Kesinlikle! Güvenliğiniz bizim önceliğimizdir:</p>
+                            <ul>
+                                <li>256-bit SSL şifreleme kullanıyoruz</li>
+                                <li>PCI DSS sertifikalı ödeme altyapısı</li>
+                                <li>Kart bilgileriniz hiçbir zaman sunucularımızda saklanmaz</li>
+                                <li>Tüm işlemler şifreli bağlantı üzerinden gerçekleşir</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Kişisel verilerim nasıl korunuyor?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>KVKK ve GDPR uyumlu veri koruma politikalarımız mevcuttur. Verileriniz:</p>
+                            <ul>
+                                <li>Şifreli veritabanlarında saklanır</li>
+                                <li>Hiçbir üçüncü tarafla paylaşılmaz</li>
+                                <li>Sadece hizmet sunumu için kullanılır</li>
+                                <li>İstediğiniz zaman silinmesini talep edebilirsiniz</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="category-title">↩️ İade ve İptal</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>İade politikanız nedir?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Dijital ürünler için <strong>7 gün içinde koşulsuz iade</strong> hakkınız bulunmaktadır.
+                            </p>
+                            <p>İade süreci:</p>
+                            <ol>
+                                <li>İletişim sayfasından veya e-posta ile talepte bulunun</li>
+                                <li>İade sebebini belirtin (zorunlu değil)</li>
+                                <li>24 saat içinde işleminiz başlatılır</li>
+                                <li>3-5 iş günü içinde paranız iade edilir</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Siparişimi iptal edebilir miyim?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Satın alma işleminden sonra 24 saat içinde ücretsiz iptal edebilirsiniz. İptal talebinizi
+                                iletişim sayfasından veya info@digimarket.com adresinden iletebilirsiniz.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="category-title">🎓 Teknik Destek</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Ürünü indiremedim, ne yapmalıyım?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>İndirme sorunu yaşıyorsanız:</p>
+                            <ul>
+                                <li>E-posta spam/gereksiz klasörünüzü kontrol edin</li>
+                                <li>Farklı bir tarayıcı deneyin</li>
+                                <li>İnternet bağlantınızı kontrol edin</li>
+                                <li>Sorun devam ederse bizimle iletişime geçin - 24 saat içinde çözüm sağlarız</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Destek alabilir miyim?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Elbette! 7/24 destek ekibimiz sizin için hazır:</p>
+                            <ul>
+                                <li>E-posta: info@digimrkt.com</li>
+                                <li>Canlı destek: Sitemizde sağ alt köşedeki chat butonundan</li>
+                                <li>Telefon: +90 555 123 4567 (Hafta içi 09:00-18:00)</li>
+                                <li>İletişim formu: <a href="contact.html">İletişim sayfamızdan</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Ürünle ilgili güncellemeler alacak mıyım?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Evet! Satın aldığınız ürünlerin tüm güncellemeleri ücretsiz olarak size e-posta ile
+                                gönderilir. Ayrıca hesabınızdan güncellenmiş versiyonları indirebilirsiniz.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="category-title">💼 Kurumsal ve Lisanslama</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Kurumsal lisans alabilir miyim?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Evet, kurumlar için özel lisanslama seçeneklerimiz mevcuttur. Kurumsal paketlerimiz
+                                şunları içerir:</p>
+                            <ul>
+                                <li>Çoklu kullanıcı lisansları</li>
+                                <li>Öncelikli teknik destek</li>
+                                <li>Özel fiyatlandırma</li>
+                                <li>Fatura ve sözleşme desteği</li>
+                            </ul>
+                            <p>Detaylı bilgi için info@digimrkt.com adresine yazabilirsiniz.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Ürünleri ticari projelerimde kullanabilir miyim?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Evet! Tüm ürünlerimiz ticari kullanım için lisanslanmıştır. Satın aldığınız ürünleri
+                                ticari projelerinizde, müşteri işlerinizde ve ürünlerinizde kullanabilirsiniz.</p>
+                            <p>Tek kısıtlama: Ürünleri olduğu gibi yeniden satamaz veya dağıtamazsınız.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-cta">
+                <h2>Sorunuza cevap bulamadınız mı?</h2>
+                <p>Size yardımcı olmaktan mutluluk duyarız!</p>
+                <a href="contact.html" class="btn-primary">Bize Ulaşın</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🚀</span>
+                        <span class="logo-text">DigiMarket</span>
+                    </div>
+                    <p class="footer-description">
+                        Premium dijital ürünler için güvenilir platformunuz.
+                        E-kitaplar, kurslar, yazılımlar ve daha fazlası.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                        <a href="#" class="social-link" aria-label="Instagram">📷</a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Hızlı Linkler</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Ana Sayfa</a></li>
+                        <li><a href="products.html">Ürünler</a></li>
+                        <li><a href="faq.html">SSS</a></li>
+                        <li><a href="#about">Hakkımızda</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Kategoriler</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">E-Kitaplar</a></li>
+                        <li><a href="products.html">Kurslar</a></li>
+                        <li><a href="products.html">Yazılımlar</a></li>
+                        <li><a href="products.html">Şablonlar</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Destek</h3>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">Yardım Merkezi</a></li>
+                        <li><a href="contact.html">İletişim</a></li>
+                        <li><a href="#refund">İade Politikası</a></li>
+                        <li><a href="#terms">Kullanım Koşulları</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2026 DigiMarket. Tüm hakları saklıdır.
+                </p>
+                <div class="footer-legal">
+                    <a href="#privacy">Gizlilik Politikası</a>
+                    <span>•</span>
+                    <a href="#terms">Kullanım Koşulları</a>
+                    <span>•</span>
+                    <a href="#cookies">Çerez Politikası</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-overlay" id="loginOverlay"></div>
+        <div class="modal-content glass-card" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2>Giriş Yap</h2>
+                <button class="modal-close" id="loginClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">E-posta</label>
+                        <input type="email" id="loginEmail" required placeholder="ornek@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Şifre</label>
+                        <input type="password" id="loginPassword" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn-primary btn-block">Giriş Yap</button>
+                    <div class="auth-switch">
+                        Hesabınız yok mu? <a href="#" id="switchToRegister">Kayıt Olun</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-overlay" id="registerOverlay"></div>
+        <div class="modal-content glass-card" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2>Kayıt Ol</h2>
+                <button class="modal-close" id="registerClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerUsername">Kullanıcı Adı</label>
+                        <input type="text" id="registerUsername" required placeholder="kullaniciadi123">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerName">Ad Soyad</label>
+                        <input type="text" id="registerName" required placeholder="Adınız Soyadınız">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">E-posta</label>
+                        <input type="email" id="registerEmail" required placeholder="ornek@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Şifre</label>
+                        <input type="password" id="registerPassword" required placeholder="••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label for="adminCode">Admin Kodu (İsteğe Bağlı)</label>
+                        <input type="text" id="adminCode" placeholder="Admin yetkisi için kod">
+                    </div>
+                    <button type="submit" class="btn-primary btn-block">Kayıt Ol</button>
+                    <div class="auth-switch">
+                        Zaten hesabınız var mı? <a href="#" id="switchToLogin">Giriş Yapın</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

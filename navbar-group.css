@@ -1,0 +1,14 @@
+/* Auth Buttons Group */
+.auth-buttons-group {
+    display: flex;
+    gap: var(--space-sm);
+    align-items: center;
+}
+
+/* Ensure nav-actions keeps things aligned */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    /* Adjust gap between Auth Group and Cart */
+}

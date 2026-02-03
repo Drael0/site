@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gizlilik Politikası - DigiMarket</title>
+    <meta name="description" content="DigiMarket gizlilik politikası ve kişisel veri koruma uygulamaları.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="_footer.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">DigiMarket</span>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Ana Sayfa</a>
+                    <div class="nav-dropdown">
+                        <a href="products.html" class="nav-link">Ürünler</a>
+                        <div class="dropdown-menu">
+                            <a href="ebooks.html" class="dropdown-item">📚 E-Kitaplar</a>
+                            <a href="courses.html" class="dropdown-item">🎓 Kurslar</a>
+                            <a href="software.html" class="dropdown-item">💻 Yazılımlar</a>
+                            <a href="templates.html" class="dropdown-item">🎨 Şablonlar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-actions">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Ürün ara..." onkeyup="handleSearch(event)">
+                        <button class="search-btn" onclick="performSearch()">🔍</button>
+                    </div>
+                    <div id="authButtons">
+                        <button class="btn-primary" id="loginBtn">Giriş Yap</button>
+                        <button class="btn-primary" id="registerBtn">Kayıt Ol</button>
+                    </div>
+                    <a href="profile.html" class="btn-secondary hidden" id="userBtn">
+                        <span>👤</span>
+                        <span id="userBtnName">Kullanıcı</span>
+                    </a>
+                    <button class="btn-primary cart-btn" id="cartBtn">
+                        <span>🛒</span>
+                        Sepet
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Gizlilik Politikası</h1>
+            <p class="page-description">Kişisel verilerinizin korunması bizim için önemlidir</p>
+            <p class="legal-date">Son Güncelleme: 2 Şubat 2026</p>
+        </div>
+    </section>
+
+    <!-- Legal Content -->
+    <section class="legal-section">
+        <div class="container">
+            <div class="legal-content">
+                <h2>1. Giriş</h2>
+                <p>DigiMarket olarak, kişisel verilerinizin gizliliğine ve korunmasına büyük önem veriyoruz. Bu Gizlilik
+                    Politikası,
+                    platformumuz aracılığıyla topladığımız kişisel verilerinizi nasıl kullandığımızı, sakladığımızı ve
+                    koruduğumuzu açıklar.</p>
+
+                <p>6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) ve AB Genel Veri Koruma Yönetmeliği (GDPR)
+                    uyarınca
+                    hareket ediyoruz.</p>
+
+                <h2>2. Toplanan Bilgiler</h2>
+                <p>Platformumuzda toplanan kişisel veriler şunları içerebilir:</p>
+                <ul>
+                    <li><strong>Kimlik Bilgileri:</strong> Ad, soyad</li>
+                    <li><strong>İletişim Bilgileri:</strong> E-posta adresi, telefon numarası</li>
+                    <li><strong>Ödeme Bilgileri:</strong> Kart bilgileri (şifreli olarak saklanır)</li>
+                    <li><strong>Teknik Bilgiler:</strong> IP adresi, tarayıcı bilgisi, çerezler</li>
+                    <li><strong>İşlem Bilgileri:</strong> Satın alma geçmişi, tercihler</li>
+                </ul>
+
+                <h2>3. Verilerin Kullanım Amaçları</h2>
+                <p>Toplanan kişisel verileriniz aşağıdaki amaçlarla kullanılır:</p>
+                <ul>
+                    <li>Dijital ürünleri size teslim etmek</li>
+                    <li>Ödeme işlemlerini gerçekleştirmek</li>
+                    <li>Müşteri destek hizmetleri sunmak</li>
+                    <li>Platformumuzun güvenliğini sağlamak</li>
+                    <li>Yasal yükümlülükleri yerine getirmek</li>
+                    <li>Hizmetlerimizi geliştirmek ve kişiselleştirmek</li>
+                    <li>İzin vermeniz halinde pazarlama iletişimleri göndermek</li>
+                </ul>
+
+                <h2>4. Verilerin Saklanması</h2>
+                <p>Kişisel verileriniz, yasal saklama süreleri boyunca veya işleme amacı devam ettiği sürece saklanır.
+                    İşleme amacının ortadan kalkması durumunda verileriniz silinir, yok edilir veya anonim hale
+                    getirilir.</p>
+
+                <h2>5. Verilerin Paylaşılması</h2>
+                <p>Kişisel verileriniz, aşağıdaki durumlar haricinde üçüncü taraflarla paylaşılmaz:</p>
+                <ul>
+                    <li>Yasal zorunluluklar ve mahkeme kararları</li>
+                    <li>Ödeme işlemi için ödeme hizmet sağlayıcıları</li>
+                    <li>Teknik altyapı sağlayıcıları (sunucu, bulut hizmetleri)</li>
+                    <li>Açık rızanızın bulunması</li>
+                </ul>
+
+                <h2>6. Veri Güvenliği</h2>
+                <p>Kişisel verilerinizin güvenliğini sağlamak için:</p>
+                <ul>
+                    <li>256-bit SSL şifreleme kullanıyoruz</li>
+                    <li>PCI DSS sertifikalı ödeme altyapısı kullanıyoruz</li>
+                    <li>Düzenli güvenlik denetimleri yapıyoruz</li>
+                    <li>Yetkisiz erişime karşı koruma önlemleri alıyoruz</li>
+                    <li>Veri tabanlarımızı şifreli saklıyoruz</li>
+                </ul>
+
+                <h2>7. Çerezler (Cookies)</h2>
+                <p>Web sitemizde kullanıcı deneyimini iyileştirmek için çerezler kullanılmaktadır. Çerezler,
+                    tarayıcınızda
+                    saklanan küçük metin dosyalarıdır. Tarayıcı ayarlarınızdan çerezleri yönetebilir veya
+                    reddedebilirsiniz.</p>
+
+                <h3>Çerez Türleri:</h3>
+                <ul>
+                    <li><strong>Zorunlu Çerezler:</strong> Sitenin çalışması için gereklidir</li>
+                    <li><strong>Performans Çerezleri:</strong> Site performansını ölçer</li>
+                    <li><strong>Fonksiyonel Çerezler:</strong> Tercihlerinizi hatırlar</li>
+                    <li><strong>Pazarlama Çerezleri:</strong> Kişiselleştirilmiş reklamlar için kullanılır</li>
+                </ul>
+
+                <h2>8. Haklarınız</h2>
+                <p>KVKK kapsamında aşağıdaki haklara sahipsiniz:</p>
+                <ul>
+                    <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+                    <li>İşlenmişse bilgi talep etme</li>
+                    <li>İşlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme</li>
+                    <li>Yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri bilme</li>
+                    <li>Eksik veya yanlış işlenmiş olması halinde düzeltilmesini isteme</li>
+                    <li>Verilerin silinmesini veya yok edilmesini isteme</li>
+                    <li>İşlenen verilerin münhasıran otomatik sistemler ile analiz edilmesi sonucu aleyhine
+                        bir sonuç doğması halinde itiraz etme</li>
+                </ul>
+
+                <p>Bu haklarınızı kullanmak için <a href="contact.html">iletişim sayfamızdan</a> veya
+                    <strong>privacy@digimrkt.com</strong> adresinden bizimle iletişime geçebilirsiniz.
+                </p>
+
+                <h2>9. Çocukların Gizliliği</h2>
+                <p>Platformumuz 18 yaş altındaki kullanıcılara yönelik değildir. 18 yaş altındaki çocukların kişisel
+                    verilerini bilerek toplamıyoruz. Ebeveyn veya vasinin izni olmadan çocuk verisi toplandığını fark
+                    edersek
+                    derhal sileriz.</p>
+
+                <h2>10. Politika Değişiklikleri</h2>
+                <p>Bu gizlilik politikasını zaman zaman güncelleme hakkımız saklıdır. Önemli değişiklikler yapıldığında
+                    sizi bilgilendireceğiz. Son güncelleme tarihini bu sayfanın başında görebilirsiniz.</p>
+
+                <h2>11. İletişim</h2>
+                <p>Gizlilik politikamız hakkında sorularınız için:</p>
+                <ul>
+                    <li><strong>E-posta:</strong> privacy@digimrkt.com</li>
+                    <li><strong>Telefon:</strong> +90 555 123 4567</li>
+                    <li><strong>Adres:</strong> İstanbul, Türkiye</li>
+                    <li><strong>İletişim Formu:</strong> <a href="contact.html">İletişim Sayfası</a></li>
+                </ul>
+
+                <div class="legal-notice">
+                    <p><strong>Not:</strong> Bu gizlilik politikası bilgilendirme amaçlıdır. Kişisel verilerinizi
+                        kullanmadan önce
+                        açık rızanız alınacaktır.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🚀</span>
+                        <span class="logo-text">DigiMarket</span>
+                    </div>
+                    <p class="footer-description">
+                        Premium dijital ürünler için güvenilir platformunuz.
+                        E-kitaplar, kurslar, yazılımlar ve daha fazlası.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                        <a href="#" class="social-link" aria-label="Instagram">📷</a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Hızlı Linkler</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Ana Sayfa</a></li>
+                        <li><a href="products.html">Ürünler</a></li>
+                        <li><a href="faq.html">SSS</a></li>
+                        <li><a href="about.html">Hakkımızda</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Kategoriler</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">E-Kitaplar</a></li>
+                        <li><a href="products.html">Kurslar</a></li>
+                        <li><a href="products.html">Yazılımlar</a></li>
+                        <li><a href="products.html">Şablonlar</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Destek</h3>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">Yardım Merkezi</a></li>
+                        <li><a href="contact.html">İletişim</a></li>
+                        <li><a href="refund.html">İade Politikası</a></li>
+                        <li><a href="terms.html">Kullanım Koşulları</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2026 DigiMarket. Tüm hakları saklıdır.
+                </p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Gizlilik Politikası</a>
+                    <span>•</span>
+                    <a href="terms.html">Kullanım Koşulları</a>
+                    <span>•</span>
+                    <a href="#cookies">Çerez Politikası</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-overlay" id="loginOverlay"></div>
+        <div class="modal-content glass-card" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2>Giriş Yap</h2>
+                <button class="modal-close" id="loginClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">E-posta</label>
+                        <input type="email" id="loginEmail" required placeholder="ornek@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Şifre</label>
+                        <input type="password" id="loginPassword" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn-primary btn-block">Giriş Yap</button>
+                    <div class="auth-switch">
+                        Hesabınız yok mu? <a href="#" id="switchToRegister">Kayıt Olun</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-overlay" id="registerOverlay"></div>
+        <div class="modal-content glass-card" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2>Kayıt Ol</h2>
+                <button class="modal-close" id="registerClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerUsername">Kullanıcı Adı</label>
+                        <input type="text" id="registerUsername" required placeholder="kullaniciadi123">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerName">Ad Soyad</label>
+                        <input type="text" id="registerName" required placeholder="Adınız Soyadınız">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">E-posta</label>
+                        <input type="email" id="registerEmail" required placeholder="ornek@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Şifre</label>
+                        <input type="password" id="registerPassword" required placeholder="••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label for="adminCode">Admin Kodu (İsteğe Bağlı)</label>
+                        <input type="text" id="adminCode" placeholder="Admin yetkisi için kod">
+                    </div>
+                    <button type="submit" class="btn-primary btn-block">Kayıt Ol</button>
+                    <div class="auth-switch">
+                        Zaten hesabınız var mı? <a href="#" id="switchToLogin">Giriş Yapın</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

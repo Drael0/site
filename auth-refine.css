@@ -1,0 +1,19 @@
+/* Auth Switch Links */
+.auth-switch {
+    margin-top: var(--space-md);
+    text-align: center;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+.auth-switch a {
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color var(--transition-base);
+}
+
+.auth-switch a:hover {
+    color: var(--color-primary-light);
+    text-decoration: underline;
+}

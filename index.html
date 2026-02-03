@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiMarket - Dijital Ürün Pazarı</title>
+    <meta name="description"
+        content="Premium dijital ürünleri keşfedin ve satın alın. E-kitaplar, yazılımlar, kurslar ve daha fazlası.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="_footer.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">DigiMarket</span>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Ana Sayfa</a>
+                    <div class="nav-dropdown">
+                        <a href="products.html" class="nav-link">Ürünler</a>
+                        <div class="dropdown-menu">
+                            <a href="ebooks.html" class="dropdown-item">📚 E-Kitaplar</a>
+                            <a href="courses.html" class="dropdown-item">🎓 Kurslar</a>
+                            <a href="software.html" class="dropdown-item">💻 Yazılımlar</a>
+                            <a href="templates.html" class="dropdown-item">🎨 Şablonlar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-actions">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Ürün ara..." onkeyup="handleSearch(event)">
+                        <button class="search-btn" onclick="performSearch()">🔍</button>
+                    </div>
+
+                    <div id="authButtons">
+                        <button class="btn-primary" id="loginBtn">Giriş Yap</button>
+                        <button class="btn-primary" id="registerBtn">Kayıt Ol</button>
+                    </div>
+                    <a href="profile.html" class="btn-secondary hidden" id="userBtn">
+                        <span>👤</span>
+                        <span id="userBtnName">Kullanıcı</span>
+                    </a>
+                    <button class="btn-primary cart-btn" id="cartBtn">
+                        <span>🛒</span>
+                        Sepet
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </button>
+                    <button class="theme-toggle" id="themeToggle" title="Tema Değiştir">
+                        <span class="theme-toggle-icon sun">☀️</span>
+                        <span class="theme-toggle-icon moon">🌙</span>
+                        <span class="theme-toggle-slider"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Dijital Ürünler</span>
+                    <br>Bir Tık Uzağınızda
+                </h1>
+                <p class="hero-description">
+                    Premium e-kitaplar, yazılımlar, kurslar ve daha fazlasını keşfedin.
+                    Anında erişim, güvenli ödeme.
+                </p>
+                <div class="hero-cta">
+                    <a href="products.html" class="btn-hero-primary">
+                        Ürünleri Keşfet
+                        <span>→</span>
+                    </a>
+                    <a href="#" class="btn-hero-secondary hidden" id="heroAdminBtn">
+                        ⚙️ Admin Paneli
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">1000+</div>
+                        <div class="stat-label">Mutlu Müşteri</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Destek</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Güvenli</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-value" data-target="7">0</div>
+                    <div class="stat-label">Dijital Ürün</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-value" data-target="10000">0</div>
+                    <div class="stat-label">Mutlu Müşteri</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-value" data-target="98">0</div>
+                    <div class="stat-label">Memnuniyet %</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">🚀</div>
+                    <div class="stat-value" data-target="24">0</div>
+                    <div class="stat-label">Saat Destek</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Müşterilerimiz Ne Diyor?</h2>
+                <p class="section-subtitle">Binlerce mutlu müşterimizden bazıları</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"DigiMarket'ten aldığım JavaScript kursu hayatımı değiştirdi. Şimdi
+                        profesyonel bir web developer'ım!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👨‍💻</div>
+                        <div class="author-info">
+                            <div class="author-name">Ahmet Yılmaz</div>
+                            <div class="author-title">Frontend Developer</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Premium şablonlar sayesinde müşterilerime hızlıca profesyonel siteler
+                        sunabiliyorum. Harika kalite!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👩‍🎨</div>
+                        <div class="author-info">
+                            <div class="author-name">Zeynep Kaya</div>
+                            <div class="author-title">UI/UX Designer</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Python e-kitabı çok kapsamlı ve anlaşılır. Projelerimde hemen
+                        kullanmaya başladım. Tavsiye ederim!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👨‍🔬</div>
+                        <div class="author-info">
+                            <div class="author-name">Mehmet Demir</div>
+                            <div class="author-title">Data Scientist</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Sıkça Sorulan Sorular</h2>
+                <p class="section-subtitle">Merak ettikleriniz</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Ürünleri nasıl satın alabilirim?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ürünler sayfasından istediğiniz ürünü sepete ekleyin, ödeme bilgilerinizi girin ve satın alma
+                            işlemini tamamlayın. Ürününüz anında e-posta adresinize gönderilir.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Ödeme güvenli mi?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Evet, tüm ödemeler 256-bit SSL şifreleme ile korunmaktadır. Kart bilgileriniz güvenle
+                            saklanır ve üçüncü taraflarla paylaşılmaz.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>İade politikanız nedir?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Dijital ürünler için 7 gün içinde koşulsuz iade hakkınız bulunmaktadır. Memnun kalmazsanız,
+                            tam iade alabilirsiniz.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Ürünlere ne kadar süre erişebilirim?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Satın aldığınız tüm ürünlere sınırsız süre ve güncellemelerle birlikte erişebilirsiniz. Ömür
+                            boyu erişim garantisi!</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Destek alabilir miyim?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Tabii ki! 7/24 destek ekibimiz her türlü sorunuz için hazır. E-posta veya canlı destek
+                            üzerinden bize ulaşabilirsiniz.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Anında Erişim</h3>
+                    <p class="feature-description">Ödeme yaptıktan sonra ürünlerinize anında erişin.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">Güvenli Ödeme</h3>
+                    <p class="feature-description">256-bit SSL şifreleme ile güvenli alışveriş.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💎</div>
+                    <h3 class="feature-title">Premium Kalite</h3>
+                    <p class="feature-description">Özenle seçilmiş yüksek kaliteli dijital ürünler.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Kolay Yönetim</h3>
+                    <p class="feature-description">Admin paneli ile kolayca ürün ekleyin ve yönetin.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Her Cihazda</h3>
+                    <p class="feature-description">Mobil, tablet ve masaüstünde mükemmel deneyim.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌟</div>
+                    <h3 class="feature-title">7/24 Destek</h3>
+                    <p class="feature-description">Her zaman yanınızdayız, yardıma hazırız.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+        <div class="modal-overlay" id="cartOverlay"></div>
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2>Alışveriş Sepetim</h2>
+                <button class="modal-close" id="cartClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="cart-items" id="cartItems">
+                    <!-- Cart items will be dynamically inserted here -->
+                </div>
+                <div class="cart-empty" id="cartEmpty">
+                    <div class="empty-icon">🛒</div>
+                    <p>Sepetiniz boş</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="cart-total">
+                    <span>Toplam:</span>
+                    <span class="total-amount" id="totalAmount">₺0.00</span>
+                </div>
+                <button class="btn-primary btn-block" id="checkoutBtn">
+                    Ödemeye Geç
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-overlay" id="loginOverlay"></div>
+        <div class="modal-content glass-card" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2>Giriş Yap</h2>
+                <button class="modal-close" id="loginClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">E-posta</label>
+                        <input type="email" id="loginEmail" required placeholder="ornek@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Şifre</label>
+                        <input type="password" id="loginPassword" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn-primary btn-block">Giriş Yap</button>
+                    <div class="auth-switch">
+                        Hesabınız yok mu? <a href="#" id="switchToRegister">Kayıt Olun</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-overlay" id="registerOverlay"></div>
+        <div class="modal-content glass-card" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2>Kayıt Ol</h2>
+                <button class="modal-close" id="registerClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerUsername">Kullanıcı Adı</label>
+                        <input type="text" id="registerUsername" required placeholder="kullaniciadi123">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerName">Ad Soyad</label>
+                        <input type="text" id="registerName" required placeholder="Adınız Soyadınız">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">E-posta</label>
+                        <input type="email" id="registerEmail" required placeholder="ornek@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Şifre</label>
+                        <input type="password" id="registerPassword" required placeholder="••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label for="adminCode">Admin Kodu (İsteğe Bağlı)</label>
+                        <input type="text" id="adminCode" placeholder="Admin yetkisi için kod">
+                    </div>
+                    <button type="submit" class="btn-primary btn-block">Kayıt Ol</button>
+                    <div class="auth-switch">
+                        Zaten hesabınız var mı? <a href="#" id="switchToLogin">Giriş Yapın</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Modal -->
+    <div class="modal" id="adminModal">
+        <div class="modal-overlay" id="adminOverlay"></div>
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2>Admin Paneli</h2>
+                <button class="modal-close" id="adminClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="productForm" class="product-form">
+                    <div class="form-group">
+                        <label for="productName">Ürün Adı</label>
+                        <input type="text" id="productName" required placeholder="Örn: Premium E-Kitap Paketi">
+                    </div>
+                    <div class="form-group">
+                        <label for="productDescription">Açıklama</label>
+                        <textarea id="productDescription" required
+                            placeholder="Ürün hakkında detaylı bilgi..."></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productPrice">Fiyat (₺)</label>
+                            <input type="number" id="productPrice" required min="0" step="0.01" placeholder="99.99">
+                        </div>
+                        <div class="form-group">
+                            <label for="productCategory">Kategori</label>
+                            <select id="productCategory" required>
+                                <option value="ebook">E-Kitap</option>
+                                <option value="course">Kurs</option>
+                                <option value="software">Yazılım</option>
+                                <option value="template">Şablon</option>
+                                <option value="other">Diğer</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="productImage">Resim URL</label>
+                        <input type="url" id="productImage" placeholder="https://example.com/image.jpg">
+                    </div>
+                    <button type="submit" class="btn-primary btn-block">Ürün Ekle</button>
+                </form>
+                <div class="admin-products">
+                    <h3>Mevcut Ürünler</h3>
+                    <div class="admin-product-list" id="adminProductList">
+                        <!-- Admin product list will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-overlay" id="checkoutOverlay"></div>
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2>Ödeme Bilgileri</h2>
+                <button class="modal-close" id="checkoutClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="checkoutForm" class="checkout-form">
+                    <div class="form-group">
+                        <label for="customerName">Ad Soyad</label>
+                        <input type="text" id="customerName" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerEmail">E-posta</label>
+                        <input type="email" id="customerEmail" required placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="cardNumber">Kart Numarası</label>
+                        <input type="text" id="cardNumber" required placeholder="1234 5678 9012 3456" maxlength="19">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiryDate">Son Kullanma</label>
+                            <input type="text" id="expiryDate" required placeholder="MM/YY" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" required placeholder="123" maxlength="3">
+                        </div>
+                    </div>
+                    <div class="checkout-summary">
+                        <div class="summary-row">
+                            <span>Ara Toplam:</span>
+                            <span id="checkoutSubtotal">₺0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>KDV (20%):</span>
+                            <span id="checkoutTax">₺0.00</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Toplam:</span>
+                            <span id="checkoutTotal">₺0.00</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary btn-block">
+                        Ödemeyi Tamamla
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-overlay" id="successOverlay"></div>
+        <div class="modal-content glass-card success-modal">
+            <div class="success-icon">✓</div>
+            <h2>Ödeme Başarılı!</h2>
+            <p>Ürünleriniz e-posta adresinize gönderildi.</p>
+            <button class="btn-primary" id="successClose">Tamam</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🚀</span>
+                        <span class="logo-text">DigiMarket</span>
+                    </div>
+                    <p class="footer-description">
+                        Premium dijital ürünler için güvenilir platformunuz.
+                        E-kitaplar, kurslar, yazılımlar ve daha fazlası.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                        <a href="#" class="social-link" aria-label="Instagram">📷</a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Hızlı Linkler</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Ana Sayfa</a></li>
+                        <li><a href="products.html">Ürünler</a></li>
+                        <li><a href="faq.html">SSS</a></li>
+                        <li><a href="about.html">Hakkımızda</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Kategoriler</h3>
+                    <ul class="footer-links">
+                        <li><a href="ebooks.html">E-Kitaplar</a></li>
+                        <li><a href="courses.html">Kurslar</a></li>
+                        <li><a href="software.html">Yazılımlar</a></li>
+                        <li><a href="templates.html">Şablonlar</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Destek</h3>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">Yardım Merkezi</a></li>
+                        <li><a href="contact.html">İletişim</a></li>
+                        <li><a href="refund.html">İade Politikası</a></li>
+                        <li><a href="terms.html">Kullanım Koşulları</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2026 DigiMarket. Tüm hakları saklıdır.
+                </p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Gizlilik Politikası</a>
+                    <span>•</span>
+                    <a href="terms.html">Kullanım Koşulları</a>
+                    <span>•</span>
+                    <a href="cookies.html">Çerez Politikası</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

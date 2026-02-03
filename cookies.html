@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Çerez Politikası - DigiMarket</title>
+    <meta name="description" content="DigiMarket çerez kullanım politikası ve bilgilendirmesi.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="_footer.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">DigiMarket</span>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Ana Sayfa</a>
+                    <div class="nav-dropdown">
+                        <a href="products.html" class="nav-link">Ürünler</a>
+                        <div class="dropdown-menu">
+                            <a href="ebooks.html" class="dropdown-item">📚 E-Kitaplar</a>
+                            <a href="courses.html" class="dropdown-item">🎓 Kurslar</a>
+                            <a href="software.html" class="dropdown-item">💻 Yazılımlar</a>
+                            <a href="templates.html" class="dropdown-item">🎨 Şablonlar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-actions">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Ürün ara..." onkeyup="handleSearch(event)">
+                        <button class="search-btn" onclick="performSearch()">🔍</button>
+                    </div>
+                    <div id="authButtons">
+                        <button class="btn-primary" id="loginBtn">Giriş Yap</button>
+                        <button class="btn-primary" id="registerBtn">Kayıt Ol</button>
+                    </div>
+                    <a href="profile.html" class="btn-secondary hidden" id="userBtn">
+                        <span>👤</span>
+                        <span id="userBtnName">Kullanıcı</span>
+                    </a>
+                    <button class="btn-primary cart-btn" id="cartBtn">
+                        <span>🛒</span>
+                        Sepet
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Çerez Politikası</h1>
+            <p class="page-description">Web sitemizde çerez kullanımı hakkında bilgilendirme</p>
+            <p class="legal-date">Son Güncelleme: 2 Şubat 2026</p>
+        </div>
+    </section>
+
+    <!-- Legal Content -->
+    <section class="legal-section">
+        <div class="container">
+            <div class="legal-content">
+                <h2>1. Çerezler Nedir?</h2>
+                <p>Çerezler (cookies), bir web sitesini ziyaret ettiğinizde cihazınıza (bilgisayar, tablet, telefon)
+                    kaydedilen küçük metin dosyalarıdır. Çerezler, web sitesinin düzgün çalışmasını sağlamak,
+                    kullanıcı deneyimini iyileştirmek ve site trafiğini analiz etmek için kullanılır.</p>
+
+                <h2>2. Çerez Türleri</h2>
+
+                <h3>2.1. Zorunlu Çerezler</h3>
+                <p>Bu çerezler web sitesinin temel işlevlerini yerine getirebilmesi için gereklidir ve
+                    devre dışı bırakılamaz.</p>
+                <ul>
+                    <li><strong>Oturum Çerezleri:</strong> Gezinme sırasında oturumunuzu korur</li>
+                    <li><strong>Güvenlik Çerezleri:</strong> Güvenlik özelliklerini etkinleştirir</li>
+                    <li><strong>Sepet Çerezleri:</strong> Alışveriş sepetinizdeki ürünleri hatırlar</li>
+                    <li><strong>Dil Tercihi:</strong> Seçtiğiniz dil ayarını saklar</li>
+                </ul>
+
+                <h3>2.2. Performans ve Analitik Çerezler</h3>
+                <p>Bu çerezler, web sitemizin nasıl kullanıldığını anlamamıza yardımcı olur.</p>
+                <ul>
+                    <li><strong>Google Analytics:</strong> Ziyaretçi istatistikleri ve davranış analizi</li>
+                    <li><strong>Sayfa Görüntüleme:</strong> En çok ziyaret edilen sayfalar</li>
+                    <li><strong>Hata Takibi:</strong> Teknik sorunları tespit etme</li>
+                    <li><strong>Performans Ölçümü:</strong> Sayfa yükleme hızları</li>
+                </ul>
+                <p><em>Bu çerezler anonim bilgi toplar ve kişisel kimliğinizi belirlemez.</em></p>
+
+                <h3>2.3. Fonksiyonel Çerezler</h3>
+                <p>Bu çerezler, tercihlerinizi hatırlayarak daha kişiselleştirilmiş bir deneyim sunar.</p>
+                <ul>
+                    <li><strong>Kullanıcı Tercihleri:</strong> Tema seçimi (açık/koyu mod)</li>
+                    <li><strong>Form Verileri:</strong> Doldurduğunuz formları hatırlar</li>
+                    <li><strong>Filtre Ayarları:</strong> Ürün filtreleme tercihleriniz</li>
+                    <li><strong>Favori Ürünler:</strong> Beğendiğiniz ürünleri saklar</li>
+                </ul>
+
+                <h3>2.4. Pazarlama ve Reklam Çerezleri</h3>
+                <p>Bu çerezler, size daha alakalı reklamlar göstermek için kullanılır.</p>
+                <ul>
+                    <li><strong>Hedefli Reklamlar:</strong> İlgi alanlarınıza uygun reklamlar</li>
+                    <li><strong>Yeniden Pazarlama:</strong> Daha önce baktığınız ürünlerin hatırlatılması</li>
+                    <li><strong>Sosyal Medya:</strong> Facebook, Instagram, Twitter entegrasyonları</li>
+                    <li><strong>Reklam Ölçümleri:</strong> Reklam kampanyası performansı</li>
+                </ul>
+                <p><em>Bu çerezleri ayarlardan devre dışı bırakabilirsiniz.</em></p>
+
+                <h2>3. Kullandığımız Çerezler</h2>
+                <div class="highlight-box">
+                    <h3>🍪 DigiMarket Çerez Listesi</h3>
+                    <table style="width: 100%; margin-top: var(--space-md); border-collapse: collapse;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid var(--color-border);">
+                                <th style="padding: var(--space-sm); text-align: left;">Çerez Adı</th>
+                                <th style="padding: var(--space-sm); text-align: left;">Türü</th>
+                                <th style="padding: var(--space-sm); text-align: left;">Süre</th>
+                                <th style="padding: var(--space-sm); text-align: left;">Amaç</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--color-border);">
+                                <td style="padding: var(--space-sm);">session_id</td>
+                                <td style="padding: var(--space-sm);">Zorunlu</td>
+                                <td style="padding: var(--space-sm);">Oturum</td>
+                                <td style="padding: var(--space-sm);">Kullanıcı oturumu</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--color-border);">
+                                <td style="padding: var(--space-sm);">cart_items</td>
+                                <td style="padding: var(--space-sm);">Zorunlu</td>
+                                <td style="padding: var(--space-sm);">7 gün</td>
+                                <td style="padding: var(--space-sm);">Sepet içeriği</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--color-border);">
+                                <td style="padding: var(--space-sm);">_ga</td>
+                                <td style="padding: var(--space-sm);">Analitik</td>
+                                <td style="padding: var(--space-sm);">2 yıl</td>
+                                <td style="padding: var(--space-sm);">Google Analytics</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--color-border);">
+                                <td style="padding: var(--space-sm);">user_prefs</td>
+                                <td style="padding: var(--space-sm);">Fonksiyonel</td>
+                                <td style="padding: var(--space-sm);">1 yıl</td>
+                                <td style="padding: var(--space-sm);">Kullanıcı tercihleri</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--color-border);">
+                                <td style="padding: var(--space-sm);">ad_consent</td>
+                                <td style="padding: var(--space-sm);">Pazarlama</td>
+                                <td style="padding: var(--space-sm);">6 ay</td>
+                                <td style="padding: var(--space-sm);">Reklam onayı</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>4. Üçüncü Taraf Çerezleri</h2>
+                <p>Web sitemizde bazı üçüncü taraf hizmetlerin çerezlerini kullanıyoruz:</p>
+
+                <h3>4.1. Google Analytics</h3>
+                <p>Site trafiğini ve kullanıcı davranışlarını analiz etmek için Google Analytics kullanıyoruz.</p>
+                <ul>
+                    <li>Çerez: _ga, _gid, _gat</li>
+                    <li>Süre: 2 yıl</li>
+                    <li>Devre dışı bırakma: <a href="https://tools.google.com/dlpage/gaoptout" target="_blank">Google
+                            Analytics Opt-out</a></li>
+                </ul>
+
+                <h3>4.2. Facebook Pixel</h3>
+                <p>Reklam kampanyalarımızın performansını ölçmek için Facebook Pixel kullanıyoruz.</p>
+                <ul>
+                    <li>Çerez: _fbp, fr</li>
+                    <li>Süre: 3 ay</li>
+                    <li>Bilgi: <a href="https://www.facebook.com/privacy/explanation" target="_blank">Facebook
+                            Gizlilik</a></li>
+                </ul>
+
+                <h3>4.3. Ödeme Sağlayıcıları</h3>
+                <p>Güvenli ödeme işlemleri için ödeme sağlayıcılarının çerezlerini kullanıyoruz.</p>
+                <ul>
+                    <li>İyzico, PayPal gibi sağlayıcılar</li>
+                    <li>Sadece ödeme sırasında aktif</li>
+                    <li>PCI DSS uyumlu güvenlik standartları</li>
+                </ul>
+
+                <h2>5. Çerezleri Nasıl Yönetebilirsiniz?</h2>
+
+                <h3>5.1. Tarayıcı Ayarları</h3>
+                <p>Çoğu web tarayıcısı, çerezleri otomatik olarak kabul edecek şekilde ayarlanmıştır.
+                    Ancak tarayıcı ayarlarınızdan çerezleri yönetebilir veya reddedebilirsiniz:</p>
+
+                <ul>
+                    <li><strong>Google Chrome:</strong> Ayarlar → Gizlilik ve güvenlik → Çerezler</li>
+                    <li><strong>Firefox:</strong> Seçenekler → Gizlilik ve Güvenlik → Çerezler ve Site Verileri</li>
+                    <li><strong>Safari:</strong> Tercihler → Gizlilik → Çerezler</li>
+                    <li><strong>Edge:</strong> Ayarlar → Gizlilik, arama ve hizmetler → Çerezler</li>
+                </ul>
+
+                <h3>5.2. Çerez Tercih Merkezi</h3>
+                <p>Sitemizde çerez tercihlerinizi yönetebileceğiniz bir kontrol paneli sunuyoruz:</p>
+                <ul>
+                    <li>Zorunlu çerezler: Her zaman aktif (devre dışı bırakılamaz)</li>
+                    <li>Performans çerezleri: İsteğe bağlı</li>
+                    <li>Fonksiyonel çerezler: İsteğeağlı</li>
+                    <li>Pazarlama çerezleri: İsteğe bağlı</li>
+                </ul>
+
+                <div class="cookie-settings">
+                    <button class="btn-primary" onclick="alert('Çerez ayarları paneli açılacak')">
+                        🍪 Çerez Ayarlarını Yönet
+                    </button>
+                </div>
+
+                <h2>6. Çerezleri Reddetmenin Etkileri</h2>
+                <p>Çerezleri reddetmeniz veya silmeniz durumunda:</p>
+                <ul>
+                    <li>❌ Bazı site özellikleri düzgün çalışmayabilir</li>
+                    <li>❌ Tercihleriniz hatırlanmayacaktır</li>
+                    <li>❌ Her ziyarette yeniden giriş yapmanız gerekebilir</li>
+                    <li>❌ Sepetiniz temizlenebilir</li>
+                    <li>❌ Kişiselleştirilmiş deneyim sunulamaz</li>
+                </ul>
+
+                <h2>7. Çocukların Gizliliği</h2>
+                <p>Web sitemiz 18 yaş altındaki kullanıcılara yönelik değildir. Çocukların kişisel verilerini
+                    bilerek toplamıyoruz. 18 yaş altındaki kullanıcılar için ebeveyn onayı gerekmektedir.</p>
+
+                <h2>8. Değişiklikler</h2>
+                <p>Bu çerez politikasını zaman zaman güncelleyebiliriz. Önemli değişiklikler yapıldığında
+                    sizi bilgilendireceğiz. Son güncelleme tarihini sayfanın başında görebilirsiniz.</p>
+
+                <p>Politikayı düzenli olarak kontrol etmenizi öneririz.</p>
+
+                <h2>9. İletişim</h2>
+                <p>Çerez politikamız hakkında sorularınız için:</p>
+                <ul>
+                    <li><strong>E-posta:</strong> privacy@digimrkt.com</li>
+                    <li><strong>Telefon:</strong> +90 555 123 4567</li>
+                    <li><strong>Adres:</strong> İstanbul, Türkiye</li>
+                    <li><strong>İletişim Formu:</strong> <a href="contact.html">İletişim Sayfası</a></li>
+                </ul>
+
+                <h2>10. Yasal Dayanak</h2>
+                <p>Bu çerez politikası aşağıdaki yasal düzenlemelere uygun olarak hazırlanmıştır:</p>
+                <ul>
+                    <li>6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK)</li>
+                    <li>AB Genel Veri Koruma Yönetmeliği (GDPR)</li>
+                    <li>ePrivacy Direktifi (Cookie Law)</li>
+                    <li>Elektronik Ticaretin Düzenlenmesi Hakkında Kanun</li>
+                </ul>
+
+                <div class="legal-notice">
+                    <p><strong>Önemli:</strong> Web sitemizi kullanarak çerez politikamızı kabul etmiş sayılırsınız.
+                        Çerez kullanımını kabul etmiyorsanız, lütfen tarayıcı ayarlarınızdan çerezleri devre dışı
+                        bırakın
+                        veya sitemizi kullanmayı durdurun.</p>
+                </div>
+
+                <div class="faq-simple">
+                    <h2>Sıkça Sorulan Sorular</h2>
+
+                    <h4>❓ Çerezler güvenli mi?</h4>
+                    <p>Evet, çerezler zararlı değildir. Virüs veya kötü amaçlı yazılım içermezler. Sadece metin
+                        dosyalarıdır ve bilgisayarınıza zarar veremezler.</p>
+
+                    <h4>❓ Çerezleri silersem ne olur?</h4>
+                    <p>Çerezleri silerseniz, oturum bilgileriniz, tercihleriniz ve sepet içeriğiniz kaybolur.
+                        Ancak istediğiniz zaman çerezleri silebilirsiniz.</p>
+
+                    <h4>❓ Çerezler kişisel bilgilerimi topluyor mu?</h4>
+                    <p>Çoğu çerez anonim bilgi toplar. Ancak bazı çerezler (örneğin oturum çerezleri)
+                        kimliğinizi doğrulamak için kullanılabilir. Tüm veriler güvenli şekilde saklanır.</p>
+
+                    <h4>❓ Mobil cihazlarda çerezler nasıl çalışır?</h4>
+                    <p>Mobil tarayıcılar da çerezleri destekler. Mobil uygulamamızda ise çerezler yerine
+                        benzer teknolojiler (mobil tanımlayıcılar) kullanılır.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🚀</span>
+                        <span class="logo-text">DigiMarket</span>
+                    </div>
+                    <p class="footer-description">
+                        Premium dijital ürünler için güvenilir platformunuz.
+                        E-kitaplar, kurslar, yazılımlar ve daha fazlası.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                        <a href="#" class="social-link" aria-label="Instagram">📷</a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Hızlı Linkler</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Ana Sayfa</a></li>
+                        <li><a href="products.html">Ürünler</a></li>
+                        <li><a href="faq.html">SSS</a></li>
+                        <li><a href="about.html">Hakkımızda</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Kategoriler</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">E-Kitaplar</a></li>
+                        <li><a href="products.html">Kurslar</a></li>
+                        <li><a href="products.html">Yazılımlar</a></li>
+                        <li><a href="products.html">Şablonlar</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Destek</h3>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">Yardım Merkezi</a></li>
+                        <li><a href="contact.html">İletişim</a></li>
+                        <li><a href="refund.html">İade Politikası</a></li>
+                        <li><a href="terms.html">Kullanım Koşulları</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2026 DigiMarket. Tüm hakları saklıdır.
+                </p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Gizlilik Politikası</a>
+                    <span>•</span>
+                    <a href="terms.html">Kullanım Koşulları</a>
+                    <span>•</span>
+                    <a href="cookies.html">Çerez Politikası</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-overlay" id="loginOverlay"></div>
+        <div class="modal-content glass-card" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2>Giriş Yap</h2>
+                <button class="modal-close" id="loginClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">E-posta</label>
+                        <input type="email" id="loginEmail" required placeholder="ornek@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Şifre</label>
+                        <input type="password" id="loginPassword" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn-primary btn-block">Giriş Yap</button>
+                    <div class="auth-switch">
+                        Hesabınız yok mu? <a href="#" id="switchToRegister">Kayıt Olun</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-overlay" id="registerOverlay"></div>
+        <div class="modal-content glass-card" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2>Kayıt Ol</h2>
+                <button class="modal-close" id="registerClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerUsername">Kullanıcı Adı</label>
+                        <input type="text" id="registerUsername" required placeholder="kullaniciadi123">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerName">Ad Soyad</label>
+                        <input type="text" id="registerName" required placeholder="Adınız Soyadınız">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">E-posta</label>
+                        <input type="email" id="registerEmail" required placeholder="ornek@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Şifre</label>
+                        <input type="password" id="registerPassword" required placeholder="••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label for="adminCode">Admin Kodu (İsteğe Bağlı)</label>
+                        <input type="text" id="adminCode" placeholder="Admin yetkisi için kod">
+                    </div>
+                    <button type="submit" class="btn-primary btn-block">Kayıt Ol</button>
+                    <div class="auth-switch">
+                        Zaten hesabınız var mı? <a href="#" id="switchToLogin">Giriş Yapın</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

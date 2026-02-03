@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kullanım Koşulları - DigiMarket</title>
+    <meta name="description" content="DigiMarket kullanım koşulları ve hizmet şartları.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="_footer.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">DigiMarket</span>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Ana Sayfa</a>
+                    <div class="nav-dropdown">
+                        <a href="products.html" class="nav-link">Ürünler</a>
+                        <div class="dropdown-menu">
+                            <a href="ebooks.html" class="dropdown-item">📚 E-Kitaplar</a>
+                            <a href="courses.html" class="dropdown-item">🎓 Kurslar</a>
+                            <a href="software.html" class="dropdown-item">💻 Yazılımlar</a>
+                            <a href="templates.html" class="dropdown-item">🎨 Şablonlar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-actions">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Ürün ara..." onkeyup="handleSearch(event)">
+                        <button class="search-btn" onclick="performSearch()">🔍</button>
+                    </div>
+                    <div id="authButtons">
+                        <button class="btn-primary" id="loginBtn">Giriş Yap</button>
+                        <button class="btn-primary" id="registerBtn">Kayıt Ol</button>
+                    </div>
+                    <a href="profile.html" class="btn-secondary hidden" id="userBtn">
+                        <span>👤</span>
+                        <span id="userBtnName">Kullanıcı</span>
+                    </a>
+                    <button class="btn-primary cart-btn" id="cartBtn">
+                        <span>🛒</span>
+                        Sepet
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Kullanım Koşulları</h1>
+            <p class="page-description">DigiMarket hizmet kullanım şartları</p>
+            <p class="legal-date">Son Güncelleme: 2 Şubat 2026</p>
+        </div>
+    </section>
+
+    <!-- Legal Content -->
+    <section class="legal-section">
+        <div class="container">
+            <div class="legal-content">
+                <h2>1. Genel Hükümler</h2>
+                <p>DigiMarket ("Platform", "Biz", "Bizim") dijital ürün satışı yapan bir e-ticaret platformudur.
+                    Bu platformu kullanarak, aşağıdaki kullanım koşullarını kabul etmiş sayılırsınız.</p>
+
+                <p>İşbu Kullanım Koşulları, platformumuzda sunulan tüm hizmetleri kapsar ve kullanıcılarımızla
+                    aramızdaki yasal çerçeveyi belirler.</p>
+
+                <h2>2. Tanımlar</h2>
+                <ul>
+                    <li><strong>Platform:</strong> DigiMarket web sitesi ve mobil uygulaması</li>
+                    <li><strong>Kullanıcı:</strong> Platformu kullanan gerçek veya tüzel kişi</li>
+                    <li><strong>Dijital Ürün:</strong> E-kitap, yazılım, kurs, şablon gibi dijital içerikler</li>
+                    <li><strong>Satıcı:</strong> Platformda ürün satan Digimarket veya yetkil partner</li>
+                    <li><strong>Alıcı:</strong> Platform üzerinden ürün satın alan kullanıcı</li>
+                </ul>
+
+                <h2>3. Hizmet Kapsamı</h2>
+                <p>DigiMarket aşağıdaki hizmetleri sunar:</p>
+                <ul>
+                    <li>Dijital ürünlerin listelenmesi ve satışa sunulması</li>
+                    <li>Güvenli ödeme altyapısı</li>
+                    <li>Dijital teslimat hizmeti</li>
+                    <li>Müşteri destek hizmeti</li>
+                    <li>Ürün güncelleme ve bakım hizmetleri</li>
+                </ul>
+
+                <h2>4. Kullanıcı Yükümlülükleri</h2>
+                <p>Platformumuzu kullanırken:</p>
+                <ul>
+                    <li>18 yaşından büyük olmalısınız</li>
+                    <li>Gerçek ve doğru bilgiler vermelisiniz</li>
+                    <li>Hesap bilgilerinizi güvende tutmalısınız</li>
+                    <li>Yasal olmayan faaliyetlerde bulunmamalısınız</li>
+                    <li>Fikri mülkiyet haklarına saygı göstermelisiniz</li>
+                    <li>Platform kurallarına uymalısınız</li>
+                </ul>
+
+                <h2>5. Satın Alma ve Ödeme</h2>
+                <h3>5.1. Satın Alma İşlemi</h3>
+                <p>Ürün satın alma işlemi şu adımları içerir:</p>
+                <ol>
+                    <li>Ürün seçimi ve sepete ekleme</li>
+                    <li>Ödeme bilgilerinin girilmesi</li>
+                    <li>Ödemenin onaylanması</li>
+                    <li>Dijital teslimat</li>
+                </ol>
+
+                <h3>5.2. Fiyatlandırma</h3>
+                <p>Tüm fiyatlar Türk Lirası (TL) c inzden gösterilir ve KDV dahildir. Platform, fiyatları
+                    önceden haber vermeksizin değiştirme hakkını saklı tutar.</p>
+
+                <h3>5.3. Ödeme Yöntemleri</h3>
+                <p>Kabul edilen ödeme yöntemleri:</p>
+                <ul>
+                    <li>Kredi Kartı</li>
+                    <li>Banka Kartı</li>
+                    <li>PayPal</li>
+                    <li>Havale/EFT</li>
+                </ul>
+
+                <h2>6. Teslimat</h2>
+                <p>Dijital ürünler, ödeme işlemi tamamlandıktan sonra <strong>anında</strong> aşağıdaki yöntemlerle
+                    teslim edilir:</p>
+                <ul>
+                    <li>E-posta yoluyla indirme linki gönderimi</li>
+                    <li>Platforma girişle erişim sağlama</li>
+                    <li>Doğrudan indirme bağlantısı</li>
+                </ul>
+
+                <p>Teslimat sorunları için 24 saat içinde destek ekibimize başvurabilirsiniz.</p>
+
+                <h2>7. İptal ve İade</h2>
+                <p>Detaylı iade politikası için <a href="refund.html">İade Politikası</a> sayfasını inceleyiniz.</p>
+
+                <p><strong>Özetle:</strong></p>
+                <ul>
+                    <li>7 gün içinde koşulsuz iade</li>
+                    <li>İade talebi için iletişime geçilmesi</li>
+                    <li>İade onayı sonrası 3-5 iş günü içinde ödeme iadesi</li>
+                </ul>
+
+                <h2>8. Fikri Mülkiyet Hakları</h2>
+                <h3>8.1. Platform Hakları</h3>
+                <p>DigiMarket platformunun tüm içerikleri (logo, tasarım, kod, metin vs.) telif hakkı ile korunmaktadır.
+                    İzinsiz kullanım yasaktır.</p>
+
+                <h3>8.2. Ürün Lisansları</h3>
+                <p>Satın aldığınız dijital ürünler için:</p>
+                <ul>
+                    <li><strong>Kişisel Kullanım Lisansı:</strong> Ticari olmayan kullanım için</li>
+                    <li><strong>Ticari Kullanım Lisansı:</strong> Ticari projelerde kullanım için</li>
+                    <li><strong>Genişletilmiş Lisans:</strong> Çoklu kullanım ve yeniden dağıtım için</li>
+                </ul>
+
+                <p>Her ürünün lisans koşulları ürün sayfasında belirtilir.</p>
+
+                <h3>8.3. Yasak Kullanımlar</h3>
+                <p>Satın alınan ürünleri:</p>
+                <ul>
+                    <li>Olduğu gibi yeniden satamaz/dağıtamazsınız</li>
+                    <li>Lisans dışı kullanımda bulunamazsınız</li>
+                    <li>Telif hakkını ihlal edemezsiniz</li>
+                </ul>
+
+                <h2>9. Sorumluluk Sınırlamaları</h2>
+                <p>DigiMarket:</p>
+                <ul>
+                    <li>Ürünlerin kalitesini garanti eder ancak kullanıcılar tarafından yapılan yanlış kullanımdan
+                        sorumlu değildir</li>
+                    <li>Teknik sorunlar nedeniyle oluşabilecek veri kayıplarından sorumlu tutulamaz</li>
+                    <li>Üçüncü taraf hizmet sağlayıcıların hatalarından sorumlu değildir</li>
+                    <li>Ürünlerin kullanımından kaynaklanan dolaylı zararlardan sorumlu tutulamaz</li>
+                </ul>
+
+                <p>Mağduriyet halinde yasal haklarınız saklıdır.</p>
+
+                <h2>10. Gizlilik</h2>
+                <p>Kişisel verilerinizin işlenmesi <a href="privacy.html">Gizlilik Politikamız</a> çerçevesinde
+                    gerçekleşir. Platform kullanımı ile birlikte gizlilik politikamızı kabul etmiş sayılırsınız.</p>
+
+                <h2>11. Hesap Askıya Alma ve Sonlandırma</h2>
+                <p>DigiMarket, kullanım koşullarını ihlal eden kullanıcıların hesaplarını:</p>
+                <ul>
+                    <li>Askıya alabilir</li>
+                    <li>Kalıcı olarak kapatabilir</li>
+                    <li>Yasal işlem başlatma hakkını saklı tutar</li>
+                </ul>
+
+                <h3>İhlal Örnekleri:</h3>
+                <ul>
+                    <li>Sahte bilgi vermek</li>
+                    <li>Dolandırıcılık yapmak</li>
+                    <li>Yasal olmayan içerik paylaşmak</li>
+                    <li>Platformu kötüye kullanmak</li>
+                    <li>Diğer kullanıcılara zarar vermek</li>
+                </ul>
+
+                <h2>12. Değişiklikler</h2>
+                <p>DigiMarket, bu kullanım koşullarını önceden haber vermeksizin değiştirme hakkını saklı tutar.
+                    Önemli değişikliklerde kullanıcılar bilgilendirilir.</p>
+
+                <p>Platform kullanımına devam ederek güncel koşulları kabul etmiş sayılırsınız.</p>
+
+                <h2>13. Uygulanacak Hukuk</h2>
+                <p>İşbu Kullanım Koşulları, Türkiye Cumhuriyeti kanunlarına tabidir. Uyuşmazlıklarda
+                    <strong>İstanbul Mahkemeleri ve İcra Daireleri</strong> yetkilidir.
+                </p>
+
+                <h2>14. İletişim</h2>
+                <p>Kullanım koşulları hakkında sorularınız için:</p>
+                <ul>
+                    <li><strong>E-posta:</strong> legal@digimrkt.com</li>
+                    <li><strong>Telefon:</strong> +90 555 123 4567</li>
+                    <li><strong>Adres:</strong> İstanbul, Türkiye</li>
+                    <li><strong>İletişim Formu:</strong> <a href="contact.html">İletişim Sayfası</a></li>
+                </ul>
+
+                <div class="legal-notice">
+                    <p><strong>Önemli Not:</strong> Bu kullanım koşullarını dikkatlice okuyunuz. Platform kullanımı
+                        ile birlikte tüm koşulları kabul etmiş sayılırsınız.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🚀</span>
+                        <span class="logo-text">DigiMarket</span>
+                    </div>
+                    <p class="footer-description">
+                        Premium dijital ürünler için güvenilir platformunuz.
+                        E-kitaplar, kurslar, yazılımlar ve daha fazlası.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                        <a href="#" class="social-link" aria-label="Instagram">📷</a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Hızlı Linkler</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Ana Sayfa</a></li>
+                        <li><a href="products.html">Ürünler</a></li>
+                        <li><a href="faq.html">SSS</a></li>
+                        <li><a href="about.html">Hakkımızda</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Kategoriler</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">E-Kitaplar</a></li>
+                        <li><a href="products.html">Kurslar</a></li>
+                        <li><a href="products.html">Yazılımlar</a></li>
+                        <li><a href="products.html">Şablonlar</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Destek</h3>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">Yardım Merkezi</a></li>
+                        <li><a href="contact.html">İletişim</a></li>
+                        <li><a href="refund.html">İade Politikası</a></li>
+                        <li><a href="terms.html">Kullanım Koşulları</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2026 DigiMarket. Tüm Hakları saklıdır.
+                </p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Gizlilik Politikası</a>
+                    <span>•</span>
+                    <a href="terms.html">Kullanım Koşulları</a>
+                    <span>•</span>
+                    <a href="#cookies">Çerez Politikası</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-overlay" id="loginOverlay"></div>
+        <div class="modal-content glass-card" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2>Giriş Yap</h2>
+                <button class="modal-close" id="loginClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">E-posta</label>
+                        <input type="email" id="loginEmail" required placeholder="ornek@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Şifre</label>
+                        <input type="password" id="loginPassword" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn-primary btn-block">Giriş Yap</button>
+                    <div class="auth-switch">
+                        Hesabınız yok mu? <a href="#" id="switchToRegister">Kayıt Olun</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-overlay" id="registerOverlay"></div>
+        <div class="modal-content glass-card" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2>Kayıt Ol</h2>
+                <button class="modal-close" id="registerClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerUsername">Kullanıcı Adı</label>
+                        <input type="text" id="registerUsername" required placeholder="kullaniciadi123">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerName">Ad Soyad</label>
+                        <input type="text" id="registerName" required placeholder="Adınız Soyadınız">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">E-posta</label>
+                        <input type="email" id="registerEmail" required placeholder="ornek@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Şifre</label>
+                        <input type="password" id="registerPassword" required placeholder="••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label for="adminCode">Admin Kodu (İsteğe Bağlı)</label>
+                        <input type="text" id="adminCode" placeholder="Admin yetkisi için kod">
+                    </div>
+                    <button type="submit" class="btn-primary btn-block">Kayıt Ol</button>
+                    <div class="auth-switch">
+                        Zaten hesabınız var mı? <a href="#" id="switchToLogin">Giriş Yapın</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

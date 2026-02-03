@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İade Politikası - DigiMarket</title>
+    <meta name="description" content="DigiMarket iade ve iptal politikası.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="_footer.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">DigiMarket</span>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Ana Sayfa</a>
+                    <div class="nav-dropdown">
+                        <a href="products.html" class="nav-link">Ürünler</a>
+                        <div class="dropdown-menu">
+                            <a href="ebooks.html" class="dropdown-item">📚 E-Kitaplar</a>
+                            <a href="courses.html" class="dropdown-item">🎓 Kurslar</a>
+                            <a href="software.html" class="dropdown-item">💻 Yazılımlar</a>
+                            <a href="templates.html" class="dropdown-item">🎨 Şablonlar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-actions">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Ürün ara..." onkeyup="handleSearch(event)">
+                        <button class="search-btn" onclick="performSearch()">🔍</button>
+                    </div>
+                    <div id="authButtons">
+                        <button class="btn-primary" id="loginBtn">Giriş Yap</button>
+                        <button class="btn-primary" id="registerBtn">Kayıt Ol</button>
+                    </div>
+                    <a href="profile.html" class="btn-secondary hidden" id="userBtn">
+                        <span>👤</span>
+                        <span id="userBtnName">Kullanıcı</span>
+                    </a>
+                    <button class="btn-primary cart-btn" id="cartBtn">
+                        <span>🛒</span>
+                        Sepet
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">İade ve İptal Politikası</h1>
+            <p class="page-description">Memnuniyetiniz bizim önceliğimizdir</p>
+            <p class="legal-date">Son Güncelleme: 2 Şubat 2026</p>
+        </div>
+    </section>
+
+    <!-- Legal Content -->
+    <section class="legal-section">
+        <div class="container">
+            <div class="legal-content">
+                <h2>1. Genel Bilgiler</h2>
+                <p>DigiMarket olarak müşteri memnuniyetine büyük önem veriyoruz. Dijital ürünler satın aldığınızda,
+                    6502 sayılı Tüketicinin Korunması Hakkında Kanun ve Mesafeli Sözleşmeler Yönetmeliği çerçevesinde
+                    cayma ve iade haklarınız bulunmaktadır.</p>
+
+                <div class="highlight-box">
+                    <h3>🎯 Özetle</h3>
+                    <ul>
+                        <li>✅ <strong>7 gün</strong> içinde <strong>koşulsuz iade</strong> hakkınız var</li>
+                        <li>✅ İade süreci <strong>24 saat</strong> içinde başlatılır</li>
+                        <li>✅ Paranız <strong>3-5 iş günü</strong> içinde iade edilir</li>
+                        <li>✅ <strong>Herhangi bir gerek versgerek yoktur</strong></li>
+                    </ul>
+                </div>
+
+                <h2>2. İade Hakkı</h2>
+                <h3>2.1. İade Süresi</h3>
+                <p>Dijital ürünleri satın aldığınız tarihten itibaren <strong>7 gün</strong> içinde iade edebilirsiniz.
+                </p>
+
+                <h3>2.2. İade Koşulları</h3>
+                <p>İade hakkınızı kullanabilmeniz için:</p>
+                <ul>
+                    <li>Ürün satın alma tarihinden itibaren 7 gün geçmemiş olmalı</li>
+                    <li>İade talebinizi yazılı olarak bildirmelisiniz</li>
+                    <li>Satın alma kanıtınız (e-posta, fatura) bulunmalı</li>
+                </ul>
+
+                <p><strong>Not:</strong> Dijital ürünler için iadesiz satış koşulu uygulanabilir, ancak biz müşteri
+                    memnuniyeti için 7 günlük iade hakkı sunuyoruz.</p>
+
+                <h2>3. İade Süreci</h2>
+                <h3>Adım 1: İade Talebi</h3>
+                <p>İade talebinizi aşağıdaki yöntemlerle bildirebilirsiniz:</p>
+                <ul>
+                    <li>📧 <strong>E-posta:</strong> refund@digimrkt.com</li>
+                    <li>📞 <strong>Telefon:</strong> +90 555 123 4567</li>
+                    <li>💬 <strong>İletişim Formu:</strong> <a href="contact.html">İletişim Sayfası</a></li>
+                    <li>💬 <strong>Canlı Destek:</strong> Web sitemizdeki canlı destek</li>
+                </ul>
+
+                <h3>Adım 2: Talebinizin İncelenmesi</h3>
+                <p>İade talebiniz alındıktan sonra:</p>
+                <ul>
+                    <li><strong>24 saat içinde</strong> ilk yanıt verilir</li>
+                    <li>Satın alma bilgileriniz doğrulanır</li>
+                    <li>İade nin kabul veya ret edilmesi konusunda bilgilendirilirsiniz</li>
+                </ul>
+
+                <h3>Adım 3: İade Onayı</h3>
+                <p>İade talebiniz onaylandığında:</p>
+                <ul>
+                    <li>E-posta ile onay bildirimi gönderilir</li>
+                    <li>Ürün erişiminiz kapatılır</li>
+                    <li>İade işlemi başlatılır</li>
+                </ul>
+
+                <h3>Adım 4: Para İadesi</h3>
+                <p>Onay sonrası:</p>
+                <ul>
+                    <li><strong>3-5 iş günü</strong> içinde ödeme iadeniz gerçekleştirilir</li>
+                    <li>İade, ödeme yaptığınız yönteme yapılır (kart, PayPal vb.)</li>
+                    <li>Banka işlem sürelerine bağlı olarak hesabınıza yansıma süresi değişebilir</li>
+                </ul>
+
+                <h2>4. İptal Hakkı</h2>
+                <h3>4.1. Satın Alma Öncesi İptal</h3>
+                <p>Ödeme işlemi tamamlanmadan önce sepetinizdeki ürünleri istediğiniz zaman iptal edebilirsiniz.</p>
+
+                <h3>4.2. Ödeme Sonrası İptal</h3>
+                <p>Ödeme işlemi tamamlandıktan sonra:</p>
+                <ul>
+                    <li><strong>İlk 24 saat içinde:</strong> Ücretsiz iptal hakkınız vardır</li>
+                    <li><strong>24 saat - 7 gün arası:</strong> İade politikası geçerlidir</li>
+                    <li><strong>7 gün sonra:</strong> Özel durumlar değerlendirilir</li>
+                </ul>
+
+                <h2>5. İade tabanEdilemeyecek Durumlar</h2>
+                <p>Aşağıdaki durumlarda iade kabul edilmeyebilir:</p>
+                <ul>
+                    <li>7 günlük süre aşılmış ise</li>
+                    <li>Ürün satın alındıktan sonra lisans ihlali yapılmış ise</li>
+                    <li>Satın alma ispat edilemez ise</li>
+                    <li>Sahte veya hileli taleplerde</li>
+                    <li>Promosyon veya indirimli ürünlerde (açıkça belirtildiyse)</li>
+                </ul>
+
+                <h2>6. Özel Durumlar</h2>
+                <h3>6.1. Teknik Sorunlar</h3>
+                <p>Eğer ürününüzde teknik bir sorun varsa:</p>
+                <ul>
+                    <li>Öncelikle destek ekibimizle iletişime geçin</li>
+                    <li>Sorunu çözmeye çalışırız</li>
+                    <li>Çözülemezse tam iade yapılır</li>
+                </ul>
+
+                <h3>6.2. Yanlış Ürün</h3>
+                <p>Yanlış ürün aldıysanız:</p>
+                <ul>
+                    <li>Derhal bize bildirin</li>
+                    <li>Doğru ürün ücretsiz gönderilir</li>
+                    <li>Veya tam iade yapılır</li>
+                </ul>
+
+                <h3>6.3. Kalite Sorunları</h3>
+                <p>Ürün kalitesi beklentinizi karşılamadıysa:</p>
+                <ul>
+                    <li>Sorunu detaylı açıklayarak bildirin</li>
+                    <li>İyileştirme yapılabilirse güncelleme gönderilir</li>
+                    <li>Aksi durumda iade yapılır</li>
+                </ul>
+
+                <h2>7. İade Masrafları</h2>
+                <p>Dijital ürünler olduğu için:</p>
+                <ul>
+                    <li>✅ <strong>Kargo ücreti yoktur</strong></li>
+                    <li>✅ <strong>İade masrafı yoktur</strong></li>
+                    <li>✅ <strong>İşlem ücreti alınmaz</strong></li>
+                </ul>
+
+                <p>Ödediğiniz tam tutar size iade edilir.</p>
+
+                <h2>8. Tüketici Hakları</h2>
+                <p>6502 sayılı Tüketicinin Korunması Hakkında Kanun çerçevesinde:</p>
+                <ul>
+                    <li>Ayıplı ürün için iade, değiştirme, indirim veya onarım hakkınız vardır</li>
+                    <li>Tüketici hakem heyetlerine başvuru hakkınız vardır</li>
+                    <li>Tüketici mahkemelerine dava açma hakkınız vardır</li>
+                </ul>
+
+                <h3>Tüketici Hakem Heyeti Başvuru Limitleri:</h3>
+                <ul>
+                    <li>İl Tüketici Hakem Heyetleri: 2024 yılı için <strong>değerle 96.880 TL'ye kadar</strong></li>
+                    <li>İlçe Tüketici Hakem Heyetleri: <strong>38.750 TL'ye kadar</strong></li>
+                </ul>
+
+                <h2>9. Sıkça Sorulan Sorular</h2>
+                <div class="faq-simple">
+                    <h4>❓ İade talebimi nasıl yapabilirim?</h4>
+                    <p>E-posta, telefon veya iletişim formumuz üzerinden talebinizi iletebilirsiniz.</p>
+
+                    <h4>❓ İade sürecim ne kadar sürer?</h4>
+                    <p>İade talebiniz 24 saat içinde yanıtlanır, para iadesi 3-5 iş günü içinde gerçekleşir.</p>
+
+                    <h4>❓ İade sebebini açıklamak zorunda mıyım?</h4>
+                    <p>Hay, zorunlu değildir ancak hizmet kalitemizi artırmak için geri bildiriminizi bekliyoruz.</p>
+
+                    <h4>❓ Kısmi iade yapabilir miyim?</h4>
+                    <p>Evet, birden fazla ürün aldıysanız sadece istediğiniz ürünleri iade edebilirsiniz.</p>
+                </div>
+
+                <h2>10. İletişim</h2>
+                <p>İade ve iptal konularında size yardımcı olmak için buradayız:</p>
+                <ul>
+                    <li><strong>İade E-postası:</strong> refund@digimrkt.com</li>
+                    <li><strong>Genel E-posta:</strong> info@digimrkt.com</li>
+                    <li><strong>Telefon:</strong> +90 555 123 4567</li>
+                    <li><strong>Çalışma Saatleri:</strong> 7/24 (E-posta), Pazartesi-Cuma 09:00-18:00 (Telefon)</li>
+                    <li><strong>İletişim Formu:</strong> <a href="contact.html">İletişim Sayfası</a></li>
+                </ul>
+
+                <div class="legal-notice">
+                    <p><strong>Önemli:</strong> Müşteri memnuniyeti bizim önceliğimizdir. Herhangi bir sorun
+                        yaşıyorsanız,
+                        önce bizimle iletişime geçin. Çoğu sorunu hızlıca çözebiliriz!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🚀</span>
+                        <span class="logo-text">DigiMarket</span>
+                    </div>
+                    <p class="footer-description">
+                        Premium dijital ürünler için güvenilir platformunuz.
+                        E-kitaplar, kurslar, yazılımlar ve daha fazlası.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                        <a href="#" class="social-link" aria-label="Instagram">📷</a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Hızlı Linkler</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Ana Sayfa</a></li>
+                        <li><a href="products.html">Ürünler</a></li>
+                        <li><a href="faq.html">SSS</a></li>
+                        <li><a href="about.html">Hakkımızda</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Kategoriler</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">E-Kitaplar</a></li>
+                        <li><a href="products.html">Kurslar</a></li>
+                        <li><a href="products.html">Yazılımlar</a></li>
+                        <li><a href="products.html">Şablonlar</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Destek</h3>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">Yardım Merkezi</a></li>
+                        <li><a href="contact.html">İletişim</a></li>
+                        <li><a href="refund.html">İade Politikası</a></li>
+                        <li><a href="terms.html">Kullanım Koşulları</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2026 DigiMarket. Tüm hakları saklıdır.
+                </p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Gizlilik Politikası</a>
+                    <span>•</span>
+                    <a href="terms.html">Kullanım Koşulları</a>
+                    <span>•</span>
+                    <a href="#cookies">Ģerez Politikası</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-overlay" id="loginOverlay"></div>
+        <div class="modal-content glass-card" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2>Giriş Yap</h2>
+                <button class="modal-close" id="loginClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">E-posta</label>
+                        <input type="email" id="loginEmail" required placeholder="ornek@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Şifre</label>
+                        <input type="password" id="loginPassword" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn-primary btn-block">Giriş Yap</button>
+                    <div class="auth-switch">
+                        Hesabınız yok mu? <a href="#" id="switchToRegister">Kayıt Olun</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-overlay" id="registerOverlay"></div>
+        <div class="modal-content glass-card" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2>Kayıt Ol</h2>
+                <button class="modal-close" id="registerClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerUsername">Kullanıcı Adı</label>
+                        <input type="text" id="registerUsername" required placeholder="kullaniciadi123">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerName">Ad Soyad</label>
+                        <input type="text" id="registerName" required placeholder="Adınız Soyadınız">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">E-posta</label>
+                        <input type="email" id="registerEmail" required placeholder="ornek@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Şifre</label>
+                        <input type="password" id="registerPassword" required placeholder="••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label for="adminCode">Admin Kodu (İsteğe Bağlı)</label>
+                        <input type="text" id="adminCode" placeholder="Admin yetkisi için kod">
+                    </div>
+                    <button type="submit" class="btn-primary btn-block">Kayıt Ol</button>
+                    <div class="auth-switch">
+                        Zaten hesabınız var mı? <a href="#" id="switchToLogin">Giriş Yapın</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

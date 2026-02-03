@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürün Detay - DigiMarket</title>
+    <meta name="description" content="DigiMarket ürün detay sayfası.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="_footer.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">DigiMarket</span>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Ana Sayfa</a>
+                    <div class="nav-dropdown">
+                        <a href="products.html" class="nav-link">Ürünler</a>
+                        <div class="dropdown-menu">
+                            <a href="ebooks.html" class="dropdown-item">📚 E-Kitaplar</a>
+                            <a href="courses.html" class="dropdown-item">🎓 Kurslar</a>
+                            <a href="software.html" class="dropdown-item">💻 Yazılımlar</a>
+                            <a href="templates.html" class="dropdown-item">🎨 Şablonlar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-actions">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Ürün ara..." onkeyup="handleSearch(event)">
+                        <button class="search-btn" onclick="performSearch()">🔍</button>
+                    </div>
+                    <div id="authButtons">
+                        <button class="btn-primary" id="loginBtn">Giriş Yap</button>
+                        <button class="btn-primary" id="registerBtn">Kayıt Ol</button>
+                    </div>
+                    <a href="profile.html" class="btn-secondary hidden" id="userBtn">
+                        <span>👤</span>
+                        <span id="userBtnName">Kullanıcı</span>
+                    </a>
+                    <button class="btn-primary cart-btn" id="cartBtn">
+                        <span>🛒</span>
+                        Sepet
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Detail Section -->
+    <section class="product-detail-section">
+        <div class="container">
+            <!-- Loading State -->
+            <div class="product-loading" id="productLoading">
+                <div class="loading-spinner"></div>
+                <p>Ürün yükleniyor...</p>
+            </div>
+
+            <!-- Product Not Found -->
+            <div class="product-not-found hidden" id="productNotFound">
+                <div class="empty-icon">😕</div>
+                <h2>Ürün Bulunamadı</h2>
+                <p>Aradığınız ürün mevcut değil veya kaldırılmış olabilir.</p>
+                <a href="products.html" class="btn-primary">Ürünlere Dön</a>
+            </div>
+
+            <!-- Product Content -->
+            <div class="product-detail-content hidden" id="productContent">
+                <div class="product-detail-grid">
+                    <!-- Product Image -->
+                    <div class="product-detail-image" id="productImage">
+                        <!-- Dynamic content -->
+                    </div>
+
+                    <!-- Product Info -->
+                    <div class="product-detail-info">
+                        <span class="product-detail-category" id="productCategory">Kategori</span>
+                        <h1 class="product-detail-name" id="productName">Ürün Adı</h1>
+                        <p class="product-detail-description" id="productDescription">Ürün açıklaması</p>
+
+                        <!-- Rating Summary -->
+                        <div class="product-rating-summary" id="ratingSummary">
+                            <div class="rating-stars" id="ratingStars">⭐⭐⭐⭐⭐</div>
+                            <span class="rating-count" id="ratingCount">(0 değerlendirme)</span>
+                        </div>
+
+                        <div class="product-detail-price" id="productPrice">₺0.00</div>
+
+                        <div class="product-detail-actions">
+                            <button class="btn-primary btn-lg" id="addToCartBtn">
+                                🛒 Sepete Ekle
+                            </button>
+                            <button class="btn-secondary btn-lg" id="addToFavoriteBtn">
+                                🤍 Favorilere Ekle
+                            </button>
+                        </div>
+
+                        <!-- Product Features -->
+                        <div class="product-features">
+                            <div class="feature-item">
+                                <span class="feature-icon">⚡</span>
+                                <span>Anında Erişim</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🔒</span>
+                                <span>Güvenli Ödeme</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">♻️</span>
+                                <span>7 Gün İade</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">💎</span>
+                                <span>Ömür Boyu Erişim</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reviews Section -->
+                <div class="reviews-section">
+                    <h2 class="reviews-title">💬 Değerlendirmeler</h2>
+
+                    <!-- Write Review Form -->
+                    <div class="write-review-container" id="writeReviewContainer">
+                        <div class="write-review-login hidden" id="reviewLoginPrompt">
+                            <p>Değerlendirme yapmak için <a href="#" onclick="openLoginModal(); return false;">giriş
+                                    yapın</a>.</p>
+                        </div>
+                        <div class="write-review-form hidden" id="reviewFormContainer">
+                            <h3>Değerlendirmenizi Yazın</h3>
+                            <form id="reviewForm">
+                                <div class="rating-input">
+                                    <label>Puanınız:</label>
+                                    <div class="star-rating" id="starRating">
+                                        <span class="star" data-rating="1">☆</span>
+                                        <span class="star" data-rating="2">☆</span>
+                                        <span class="star" data-rating="3">☆</span>
+                                        <span class="star" data-rating="4">☆</span>
+                                        <span class="star" data-rating="5">☆</span>
+                                    </div>
+                                    <input type="hidden" id="selectedRating" value="0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="reviewTitle">Başlık</label>
+                                    <input type="text" id="reviewTitle" required placeholder="Değerlendirme başlığı">
+                                </div>
+                                <div class="form-group">
+                                    <label for="reviewText">Yorumunuz</label>
+                                    <textarea id="reviewText" required
+                                        placeholder="Ürün hakkında görüşlerinizi yazın..." rows="4"></textarea>
+                                </div>
+                                <button type="submit" class="btn-primary">Değerlendirmeyi Gönder</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Reviews List -->
+                    <div class="reviews-list" id="reviewsList">
+                        <!-- Reviews will be dynamically inserted here -->
+                    </div>
+                    <div class="reviews-empty hidden" id="reviewsEmpty">
+                        <div class="empty-icon">📝</div>
+                        <h3>Henüz değerlendirme yok</h3>
+                        <p>Bu ürün için ilk değerlendirmeyi siz yazın!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🚀</span>
+                        <span class="logo-text">DigiMarket</span>
+                    </div>
+                    <p class="footer-description">
+                        Premium dijital ürünler için güvenilir platformunuz.
+                        E-kitaplar, kurslar, yazılımlar ve daha fazlası.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                        <a href="#" class="social-link" aria-label="Instagram">📷</a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Hızlı Linkler</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Ana Sayfa</a></li>
+                        <li><a href="products.html">Ürünler</a></li>
+                        <li><a href="faq.html">SSS</a></li>
+                        <li><a href="about.html">Hakkımızda</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Kategoriler</h3>
+                    <ul class="footer-links">
+                        <li><a href="ebooks.html">E-Kitaplar</a></li>
+                        <li><a href="courses.html">Kurslar</a></li>
+                        <li><a href="software.html">Yazılımlar</a></li>
+                        <li><a href="templates.html">Şablonlar</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Destek</h3>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">Yardım Merkezi</a></li>
+                        <li><a href="contact.html">İletişim</a></li>
+                        <li><a href="refund.html">İade Politikası</a></li>
+                        <li><a href="terms.html">Kullanım Koşulları</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2026 DigiMarket. Tüm hakları saklıdır.
+                </p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Gizlilik Politikası</a>
+                    <span>•</span>
+                    <a href="terms.html">Kullanım Koşulları</a>
+                    <span>•</span>
+                    <a href="cookies.html">Çerez Politikası</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+        <div class="modal-overlay" id="cartOverlay"></div>
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2>Alışveriş Sepetim</h2>
+                <button class="modal-close" id="cartClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="cart-items" id="cartItems"></div>
+                <div class="cart-empty" id="cartEmpty">
+                    <div class="empty-icon">🛒</div>
+                    <p>Sepetiniz boş</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="cart-total">
+                    <span>Toplam:</span>
+                    <span class="total-amount" id="totalAmount">₺0.00</span>
+                </div>
+                <button class="btn-primary btn-block" id="checkoutBtn">Ödemeye Geç</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-overlay" id="loginOverlay"></div>
+        <div class="modal-content glass-card" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2>Giriş Yap</h2>
+                <button class="modal-close" id="loginClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">E-posta</label>
+                        <input type="email" id="loginEmail" required placeholder="ornek@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Şifre</label>
+                        <input type="password" id="loginPassword" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn-primary btn-block">Giriş Yap</button>
+                    <div class="auth-switch">
+                        Hesabınız yok mu? <a href="#" id="switchToRegister">Kayıt Olun</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-overlay" id="registerOverlay"></div>
+        <div class="modal-content glass-card" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2>Kayıt Ol</h2>
+                <button class="modal-close" id="registerClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerUsername">Kullanıcı Adı</label>
+                        <input type="text" id="registerUsername" required placeholder="kullaniciadi123">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerName">Ad Soyad</label>
+                        <input type="text" id="registerName" required placeholder="Adınız Soyadınız">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">E-posta</label>
+                        <input type="email" id="registerEmail" required placeholder="ornek@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Şifre</label>
+                        <input type="password" id="registerPassword" required placeholder="••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label for="adminCode">Admin Kodu (İsteğe Bağlı)</label>
+                        <input type="text" id="adminCode" placeholder="Admin yetkisi için kod">
+                    </div>
+                    <button type="submit" class="btn-primary btn-block">Kayıt Ol</button>
+                    <div class="auth-switch">
+                        Zaten hesabınız var mı? <a href="#" id="switchToLogin">Giriş Yapın</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-overlay" id="checkoutOverlay"></div>
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2>Ödeme Bilgileri</h2>
+                <button class="modal-close" id="checkoutClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="checkoutForm" class="checkout-form">
+                    <div class="form-group">
+                        <label for="customerName">Ad Soyad</label>
+                        <input type="text" id="customerName" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerEmail">E-posta</label>
+                        <input type="email" id="customerEmail" required placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="cardNumber">Kart Numarası</label>
+                        <input type="text" id="cardNumber" required placeholder="1234 5678 9012 3456" maxlength="19">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiryDate">Son Kullanma</label>
+                            <input type="text" id="expiryDate" required placeholder="MM/YY" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" required placeholder="123" maxlength="3">
+                        </div>
+                    </div>
+                    <div class="checkout-summary">
+                        <div class="summary-row">
+                            <span>Ara Toplam:</span>
+                            <span id="checkoutSubtotal">₺0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>KDV (20%):</span>
+                            <span id="checkoutTax">₺0.00</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Toplam:</span>
+                            <span id="checkoutTotal">₺0.00</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary btn-block">Ödemeyi Tamamla</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-overlay" id="successOverlay"></div>
+        <div class="modal-content glass-card success-modal">
+            <div class="success-icon">✓</div>
+            <h2>Ödeme Başarılı!</h2>
+            <p>Ürünleriniz e-posta adresinize gönderildi.</p>
+            <button class="btn-primary" id="successClose">Tamam</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Product Detail Page Logic
+        let currentProduct = null;
+        let productReviews = [];
+
+        document.addEventListener('DOMContentLoaded', function () {
+            initProductDetailPage();
+            setupReviewForm();
+        });
+
+        function initProductDetailPage() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+
+            if (!productId) {
+                showProductNotFound();
+                return;
+            }
+
+            // Find product
+            currentProduct = products.find(p => p.id === productId);
+
+            if (!currentProduct) {
+                showProductNotFound();
+                return;
+            }
+
+            // Load reviews
+            loadProductReviews(productId);
+
+            // Render product
+            renderProductDetail();
+
+            // Setup buttons
+            setupProductButtons();
+
+            // Update review form visibility
+            updateReviewFormVisibility();
+        }
+
+        function showProductNotFound() {
+            document.getElementById('productLoading').classList.add('hidden');
+            document.getElementById('productNotFound').classList.remove('hidden');
+        }
+
+        function loadProductReviews(productId) {
+            productReviews = JSON.parse(localStorage.getItem(`reviews_${productId}`)) || [];
+        }
+
+        function saveProductReviews(productId) {
+            localStorage.setItem(`reviews_${productId}`, JSON.stringify(productReviews));
+        }
+
+        function renderProductDetail() {
+            document.getElementById('productLoading').classList.add('hidden');
+            document.getElementById('productContent').classList.remove('hidden');
+
+            // Update page title
+            document.title = `${currentProduct.name} - DigiMarket`;
+
+            // Render image
+            const imageContainer = document.getElementById('productImage');
+            if (currentProduct.image) {
+                imageContainer.innerHTML = `<img src="${currentProduct.image}" alt="${currentProduct.name}">`;
+            } else {
+                imageContainer.innerHTML = `<span class="product-icon">${categoryIcons[currentProduct.category]}</span>`;
+            }
+
+            // Render info
+            document.getElementById('productCategory').textContent = categoryNames[currentProduct.category];
+            document.getElementById('productName').textContent = currentProduct.name;
+            document.getElementById('productDescription').textContent = currentProduct.description;
+            document.getElementById('productPrice').textContent = `₺${currentProduct.price.toFixed(2)}`;
+
+            // Render rating summary
+            renderRatingSummary();
+
+            // Update favorite button
+            updateFavoriteButton();
+
+            // Render reviews
+            renderReviews();
+        }
+
+        function renderRatingSummary() {
+            const avgRating = calculateAverageRating();
+            const reviewCount = productReviews.length;
+
+            document.getElementById('ratingStars').innerHTML = getStarDisplay(avgRating);
+            document.getElementById('ratingCount').textContent = `(${reviewCount} değerlendirme)`;
+        }
+
+        function calculateAverageRating() {
+            if (productReviews.length === 0) return 0;
+            const sum = productReviews.reduce((acc, review) => acc + review.rating, 0);
+            return sum / productReviews.length;
+        }
+
+        function getStarDisplay(rating) {
+            const fullStars = Math.floor(rating);
+            const halfStar = rating % 1 >= 0.5;
+            let stars = '';
+
+            for (let i = 0; i < 5; i++) {
+                if (i < fullStars) {
+                    stars += '⭐';
+                } else if (i === fullStars && halfStar) {
+                    stars += '⭐';
+                } else {
+                    stars += '☆';
+                }
+            }
+            return stars;
+        }
+
+        function setupProductButtons() {
+            // Add to cart button
+            document.getElementById('addToCartBtn').addEventListener('click', function () {
+                addToCart(currentProduct.id);
+            });
+
+            // Add to favorite button
+            document.getElementById('addToFavoriteBtn').addEventListener('click', function () {
+                toggleFavorite(currentProduct.id);
+                updateFavoriteButton();
+            });
+        }
+
+        function updateFavoriteButton() {
+            const btn = document.getElementById('addToFavoriteBtn');
+            if (isFavorite(currentProduct.id)) {
+                btn.innerHTML = '❤️ Favorilerde';
+                btn.classList.add('favorited');
+            } else {
+                btn.innerHTML = '🤍 Favorilere Ekle';
+                btn.classList.remove('favorited');
+            }
+        }
+
+        function updateReviewFormVisibility() {
+            const loginPrompt = document.getElementById('reviewLoginPrompt');
+            const formContainer = document.getElementById('reviewFormContainer');
+
+            if (currentUser) {
+                loginPrompt.classList.add('hidden');
+                formContainer.classList.remove('hidden');
+            } else {
+                loginPrompt.classList.remove('hidden');
+                formContainer.classList.add('hidden');
+            }
+        }
+
+        function setupReviewForm() {
+            // Star rating interaction
+            const stars = document.querySelectorAll('#starRating .star');
+            stars.forEach(star => {
+                star.addEventListener('click', function () {
+                    const rating = parseInt(this.dataset.rating);
+                    document.getElementById('selectedRating').value = rating;
+                    updateStarDisplay(rating);
+                });
+
+                star.addEventListener('mouseover', function () {
+                    const rating = parseInt(this.dataset.rating);
+                    highlightStars(rating);
+                });
+
+                star.addEventListener('mouseout', function () {
+                    const currentRating = parseInt(document.getElementById('selectedRating').value);
+                    updateStarDisplay(currentRating);
+                });
+            });
+
+            // Review form submit
+            const reviewForm = document.getElementById('reviewForm');
+            if (reviewForm) {
+                reviewForm.addEventListener('submit', handleReviewSubmit);
+            }
+        }
+
+        function highlightStars(rating) {
+            const stars = document.querySelectorAll('#starRating .star');
+            stars.forEach((star, index) => {
+                star.textContent = index < rating ? '★' : '☆';
+                star.classList.toggle('active', index < rating);
+            });
+        }
+
+        function updateStarDisplay(rating) {
+            const stars = document.querySelectorAll('#starRating .star');
+            stars.forEach((star, index) => {
+                star.textContent = index < rating ? '★' : '☆';
+                star.classList.toggle('selected', index < rating);
+            });
+        }
+
+        function handleReviewSubmit(e) {
+            e.preventDefault();
+
+            const rating = parseInt(document.getElementById('selectedRating').value);
+            const title = document.getElementById('reviewTitle').value;
+            const text = document.getElementById('reviewText').value;
+
+            if (rating === 0) {
+                showNotification('Lütfen bir puan seçin!');
+                return;
+            }
+
+            // Check if user already reviewed
+            const existingReview = productReviews.find(r => r.userId === currentUser.id);
+            if (existingReview) {
+                showNotification('Bu ürünü zaten değerlendirdiniz!');
+                return;
+            }
+
+            // Create review
+            const review = {
+                id: generateId(),
+                userId: currentUser.id,
+                userName: currentUser.name,
+                rating: rating,
+                title: title,
+                text: text,
+                date: new Date().toISOString()
+            };
+
+            productReviews.unshift(review);
+            saveProductReviews(currentProduct.id);
+
+            // Reset form
+            e.target.reset();
+            document.getElementById('selectedRating').value = 0;
+            updateStarDisplay(0);
+
+            // Re-render
+            renderRatingSummary();
+            renderReviews();
+
+            showNotification('Değerlendirmeniz eklendi!');
+        }
+
+        function renderReviews() {
+            const reviewsList = document.getElementById('reviewsList');
+            const reviewsEmpty = document.getElementById('reviewsEmpty');
+
+            if (productReviews.length === 0) {
+                reviewsList.innerHTML = '';
+                reviewsEmpty.classList.remove('hidden');
+            } else {
+                reviewsEmpty.classList.add('hidden');
+                reviewsList.innerHTML = productReviews.map(review => `
+                    <div class="review-card glass-card">
+                        <div class="review-header">
+                            <div class="review-author">
+                                <span class="author-avatar">👤</span>
+                                <div class="author-info">
+                                    <span class="author-name">${review.userName}</span>
+                                    <span class="review-date">${formatDate(review.date)}</span>
+                                </div>
+                            </div>
+                            <div class="review-rating">${getStarDisplay(review.rating)}</div>
+                        </div>
+                        <h4 class="review-title">${review.title}</h4>
+                        <p class="review-text">${review.text}</p>
+                        ${currentUser && (currentUser.id === review.userId || currentUser.role === 'admin') ?
+                        `<button class="btn-delete-review" onclick="deleteReview('${review.id}')">Sil</button>` : ''}
+                    </div>
+                `).join('');
+            }
+        }
+
+        function deleteReview(reviewId) {
+            if (confirm('Bu değerlendirmeyi silmek istiyor musunuz?')) {
+                productReviews = productReviews.filter(r => r.id !== reviewId);
+                saveProductReviews(currentProduct.id);
+                renderRatingSummary();
+                renderReviews();
+                showNotification('Değerlendirme silindi.');
+            }
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('tr-TR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+    </script>
+</body>
+
+</html>

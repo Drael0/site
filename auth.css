@@ -1,0 +1,82 @@
+/* ============================================
+   Auth Styles
+   ============================================ */
+.auth-tabs {
+    display: flex;
+    gap: var(--space-sm);
+    background: var(--color-bg-tertiary);
+    padding: 4px;
+    border-radius: var(--radius-full);
+}
+
+.auth-tab {
+    flex: 1;
+    padding: var(--space-xs) var(--space-md);
+    border: none;
+    background: transparent;
+    color: var(--color-text-secondary);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all var(--transition-base);
+}
+
+.auth-tab.active {
+    background: var(--color-surface);
+    color: var(--color-text);
+    box-shadow: var(--shadow-sm);
+}
+
+.auth-form {
+    display: none;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+/* User Menu Styles */
+.user-menu-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-xs) var(--space-md);
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.user-menu-btn:hover {
+    background: var(--color-surface);
+    border-color: var(--color-primary);
+}
+
+.user-avatar {
+    width: 24px;
+    height: 24px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.user-info-header {
+    padding: var(--space-sm) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+}
+
+.user-info-header span {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+}
+
+/* Helper Class */
+.hidden {
+    display: none !important;
+}

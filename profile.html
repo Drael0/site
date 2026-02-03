@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profilim - DigiMarket</title>
+    <meta name="description"
+        content="DigiMarket kullanıcı profili sayfası. Hesap bilgilerinizi görüntüleyin ve düzenleyin.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="_footer.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">DigiMarket</span>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Ana Sayfa</a>
+                    <div class="nav-dropdown">
+                        <a href="products.html" class="nav-link">Ürünler</a>
+                        <div class="dropdown-menu">
+                            <a href="ebooks.html" class="dropdown-item">📚 E-Kitaplar</a>
+                            <a href="courses.html" class="dropdown-item">🎓 Kurslar</a>
+                            <a href="software.html" class="dropdown-item">💻 Yazılımlar</a>
+                            <a href="templates.html" class="dropdown-item">🎨 Şablonlar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-actions">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Ürün ara..." onkeyup="handleSearch(event)">
+                        <button class="search-btn" onclick="performSearch()">🔍</button>
+                    </div>
+                    <div id="authButtons">
+                        <button class="btn-primary" id="loginBtn">Giriş Yap</button>
+                        <button class="btn-primary" id="registerBtn">Kayıt Ol</button>
+                    </div>
+                    <a href="profile.html" class="btn-secondary hidden" id="userBtn">
+                        <span>👤</span>
+                        <span id="userBtnName">Kullanıcı</span>
+                    </a>
+                    <button class="btn-primary cart-btn" id="cartBtn">
+                        <span>🛒</span>
+                        Sepet
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">👤 Profilim</h1>
+            <p class="page-description">Hesap bilgilerinizi görüntüleyin ve düzenleyin</p>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <div class="container">
+            <!-- Not Logged In Message -->
+            <div class="profile-not-logged" id="profileNotLogged">
+                <div class="empty-state">
+                    <div class="empty-icon">🔒</div>
+                    <h3>Giriş Yapmanız Gerekiyor</h3>
+                    <p>Profil sayfasını görüntülemek için lütfen giriş yapın.</p>
+                    <button class="btn-primary" id="profileLoginBtn">Giriş Yap</button>
+                </div>
+            </div>
+
+            <!-- Profile Content (Hidden until logged in) -->
+            <div class="profile-content hidden" id="profileContent">
+                <div class="profile-grid">
+                    <!-- Profile Info Card -->
+                    <div class="profile-card glass-card">
+                        <div class="profile-header">
+                            <div class="profile-avatar">👤</div>
+                            <div class="profile-info">
+                                <h2 id="profileName">-</h2>
+                                <p id="profileEmail">-</p>
+                                <span class="profile-badge" id="profileRole">Kullanıcı</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Edit Profile Card -->
+                    <div class="profile-card glass-card">
+                        <h3>📝 Bilgilerimi Düzenle</h3>
+                        <form id="editProfileForm">
+                            <div class="form-group">
+                                <label for="editName">Ad Soyad</label>
+                                <input type="text" id="editName" required placeholder="Adınız Soyadınız">
+                            </div>
+                            <button type="submit" class="btn-primary btn-block">Bilgileri Güncelle</button>
+                        </form>
+                    </div>
+
+                    <!-- Change Password Card -->
+                    <div class="profile-card glass-card">
+                        <h3>🔐 Şifre Değiştir</h3>
+                        <form id="changePasswordForm">
+                            <div class="form-group">
+                                <label for="currentPassword">Mevcut Şifre</label>
+                                <input type="password" id="currentPassword" required placeholder="••••••••">
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">Yeni Şifre</label>
+                                <input type="password" id="newPassword" required placeholder="••••••••">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Yeni Şifre (Tekrar)</label>
+                                <input type="password" id="confirmPassword" required placeholder="••••••••">
+                            </div>
+                            <button type="submit" class="btn-primary btn-block">Şifreyi Değiştir</button>
+                        </form>
+                    </div>
+
+                    <!-- Logout Card -->
+                    <div class="profile-card glass-card">
+                        <h3>🚪 Oturum</h3>
+                        <p style="color: var(--color-text-secondary); margin-bottom: var(--space-md);">
+                            Hesabınızdan çıkış yapmak için aşağıdaki butonu kullanın.
+                        </p>
+                        <button class="btn-secondary btn-block" id="logoutBtn">Çıkış Yap</button>
+                    </div>
+                </div>
+
+                <!-- Favorites Section -->
+                <div class="favorites-section">
+                    <h2 class="section-title">❤️ Favorilerim</h2>
+                    <div class="favorites-grid" id="favoritesGrid">
+                        <!-- Favorite products will be dynamically inserted here -->
+                    </div>
+                    <div class="favorites-empty" id="favoritesEmpty">
+                        <div class="empty-icon">💔</div>
+                        <h3>Henüz favori ürününüz yok</h3>
+                        <p>Ürünleri favorilere eklemek için ürün sayfasında ❤️ butonuna tıklayın.</p>
+                        <a href="products.html" class="btn-primary">Ürünleri Keşfet</a>
+                    </div>
+                </div>
+
+                <!-- Order History Section -->
+                <div class="orders-section">
+                    <h2 class="section-title">📦 Sipariş Geçmişim</h2>
+                    <div class="orders-list" id="ordersList">
+                        <!-- Orders will be dynamically inserted here -->
+                    </div>
+                    <div class="orders-empty" id="ordersEmpty">
+                        <div class="empty-icon">📋</div>
+                        <h3>Henüz siparişiniz yok</h3>
+                        <p>İlk siparişinizi vermek için ürünlerimize göz atın.</p>
+                        <a href="products.html" class="btn-primary">Alışverişe Başla</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🚀</span>
+                        <span class="logo-text">DigiMarket</span>
+                    </div>
+                    <p class="footer-description">
+                        Premium dijital ürünler için güvenilir platformunuz.
+                        E-kitaplar, kurslar, yazılımlar ve daha fazlası.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                        <a href="#" class="social-link" aria-label="Instagram">📷</a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Hızlı Linkler</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Ana Sayfa</a></li>
+                        <li><a href="products.html">Ürünler</a></li>
+                        <li><a href="faq.html">SSS</a></li>
+                        <li><a href="about.html">Hakkımızda</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Kategoriler</h3>
+                    <ul class="footer-links">
+                        <li><a href="ebooks.html">E-Kitaplar</a></li>
+                        <li><a href="courses.html">Kurslar</a></li>
+                        <li><a href="software.html">Yazılımlar</a></li>
+                        <li><a href="templates.html">Şablonlar</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Destek</h3>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">Yardım Merkezi</a></li>
+                        <li><a href="contact.html">İletişim</a></li>
+                        <li><a href="refund.html">İade Politikası</a></li>
+                        <li><a href="terms.html">Kullanım Koşulları</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2026 DigiMarket. Tüm hakları saklıdır.
+                </p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Gizlilik Politikası</a>
+                    <span>•</span>
+                    <a href="terms.html">Kullanım Koşulları</a>
+                    <span>•</span>
+                    <a href="cookies.html">Çerez Politikası</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-overlay" id="loginOverlay"></div>
+        <div class="modal-content glass-card" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2>Giriş Yap</h2>
+                <button class="modal-close" id="loginClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">E-posta</label>
+                        <input type="email" id="loginEmail" required placeholder="ornek@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Şifre</label>
+                        <input type="password" id="loginPassword" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn-primary btn-block">Giriş Yap</button>
+                    <div class="auth-switch">
+                        Hesabınız yok mu? <a href="#" id="switchToRegister">Kayıt Olun</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-overlay" id="registerOverlay"></div>
+        <div class="modal-content glass-card" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2>Kayıt Ol</h2>
+                <button class="modal-close" id="registerClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerUsername">Kullanıcı Adı</label>
+                        <input type="text" id="registerUsername" required placeholder="kullaniciadi123">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerName">Ad Soyad</label>
+                        <input type="text" id="registerName" required placeholder="Adınız Soyadınız">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">E-posta</label>
+                        <input type="email" id="registerEmail" required placeholder="ornek@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Şifre</label>
+                        <input type="password" id="registerPassword" required placeholder="••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label for="adminCode">Admin Kodu (İsteğe Bağlı)</label>
+                        <input type="text" id="adminCode" placeholder="Admin yetkisi için kod">
+                    </div>
+                    <button type="submit" class="btn-primary btn-block">Kayıt Ol</button>
+                    <div class="auth-switch">
+                        Zaten hesabınız var mı? <a href="#" id="switchToLogin">Giriş Yapın</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Profile Page Specific Logic
+        document.addEventListener('DOMContentLoaded', function () {
+            initProfilePage();
+
+            // Profile login button
+            const profileLoginBtn = document.getElementById('profileLoginBtn');
+            if (profileLoginBtn) {
+                profileLoginBtn.addEventListener('click', openLoginModal);
+            }
+
+            // Logout button
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', handleLogout);
+            }
+
+            // Edit profile form
+            const editProfileForm = document.getElementById('editProfileForm');
+            if (editProfileForm) {
+                editProfileForm.addEventListener('submit', handleEditProfile);
+            }
+
+            // Change password form
+            const changePasswordForm = document.getElementById('changePasswordForm');
+            if (changePasswordForm) {
+                changePasswordForm.addEventListener('submit', handleChangePassword);
+            }
+        });
+
+        function initProfilePage() {
+            const profileNotLogged = document.getElementById('profileNotLogged');
+            const profileContent = document.getElementById('profileContent');
+            const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+
+            if (currentUser) {
+                // User is logged in
+                if (profileNotLogged) profileNotLogged.classList.add('hidden');
+                if (profileContent) profileContent.classList.remove('hidden');
+
+                // Populate profile info
+                document.getElementById('profileName').textContent = currentUser.name;
+                document.getElementById('profileEmail').textContent = currentUser.email;
+                document.getElementById('profileRole').textContent =
+                    currentUser.role === 'admin' ? '👑 Admin' : '👤 Kullanıcı';
+
+                // Populate edit form
+                document.getElementById('editName').value = currentUser.name;
+
+                // Render favorites
+                renderProfileFavorites();
+
+                // Render order history
+                renderProfileOrders();
+            } else {
+                // User is not logged in
+                if (profileNotLogged) profileNotLogged.classList.remove('hidden');
+                if (profileContent) profileContent.classList.add('hidden');
+            }
+        }
+
+        function renderProfileFavorites() {
+            const favoritesGrid = document.getElementById('favoritesGrid');
+            const favoritesEmpty = document.getElementById('favoritesEmpty');
+
+            if (!favoritesGrid || !favoritesEmpty) return;
+
+            // Get favorite product IDs
+            const favoriteProducts = products.filter(product => favorites.includes(product.id));
+
+            if (favoriteProducts.length === 0) {
+                favoritesGrid.style.display = 'none';
+                favoritesEmpty.style.display = 'flex';
+            } else {
+                favoritesGrid.style.display = 'grid';
+                favoritesEmpty.style.display = 'none';
+
+                favoritesGrid.innerHTML = favoriteProducts.map(product => `
+                    <div class="favorite-product-card glass-card" data-id="${product.id}">
+                        <button class="favorite-remove-btn" onclick="removeFromProfileFavorites('${product.id}')" title="Favorilerden Çıkar">
+                            ✕
+                        </button>
+                        <a href="product-detail.html?id=${product.id}" class="favorite-product-image-link">
+                            <div class="favorite-product-image">
+                                ${product.image ? `<img src="${product.image}" alt="${product.name}">` : categoryIcons[product.category]}
+                            </div>
+                        </a>
+                        <div class="favorite-product-info">
+                            <span class="favorite-product-category">${categoryNames[product.category]}</span>
+                            <a href="product-detail.html?id=${product.id}" class="favorite-product-name-link">
+                                <h4 class="favorite-product-name">${product.name}</h4>
+                            </a>
+                            <p class="favorite-product-description">${product.description}</p>
+                            <div class="favorite-product-footer">
+                                <span class="favorite-product-price">₺${product.price.toFixed(2)}</span>
+                                <button class="btn-primary btn-sm" onclick="addToCartFromProfile('${product.id}')">Sepete Ekle</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function removeFromProfileFavorites(productId) {
+            toggleFavorite(productId);
+            renderProfileFavorites();
+        }
+
+        function addToCartFromProfile(productId) {
+            addToCart(productId);
+        }
+
+        function renderProfileOrders() {
+            const ordersList = document.getElementById('ordersList');
+            const ordersEmpty = document.getElementById('ordersEmpty');
+
+            if (!ordersList || !ordersEmpty) return;
+
+            // Load orders from app.js global variable
+            if (orders.length === 0) {
+                ordersList.innerHTML = '';
+                ordersList.style.display = 'none';
+                ordersEmpty.style.display = 'flex';
+            } else {
+                ordersList.style.display = 'flex';
+                ordersEmpty.style.display = 'none';
+
+                ordersList.innerHTML = orders.map(order => `
+                    <div class="order-card glass-card">
+                        <div class="order-header">
+                            <span class="order-id">Sipariş #${order.id.substring(0, 8).toUpperCase()}</span>
+                            <span class="order-date">${formatOrderDate(order.date)}</span>
+                        </div>
+                        <div class="order-items">
+                            ${order.items.map(item => `
+                                <div class="order-item">
+                                    <span class="order-item-name">${item.name} x${item.quantity}</span>
+                                    <span class="order-item-price">₺${(item.price * item.quantity).toFixed(2)}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="order-footer">
+                            <span class="order-total">Toplam: ₺${order.total.toFixed(2)}</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function formatOrderDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('tr-TR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function handleEditProfile(e) {
+            e.preventDefault();
+            const newName = document.getElementById('editName').value;
+            const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+
+            if (!currentUser) return;
+
+            // Update user in localStorage
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const userIndex = users.findIndex(u => u.id === currentUser.id);
+            if (userIndex !== -1) {
+                users[userIndex].name = newName;
+                localStorage.setItem('users', JSON.stringify(users));
+
+                // Update session
+                currentUser.name = newName;
+                sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+                // Update UI
+                document.getElementById('profileName').textContent = newName;
+                document.getElementById('userBtnName').textContent = newName;
+
+                showNotification('Bilgileriniz güncellendi!');
+            }
+        }
+
+        function handleChangePassword(e) {
+            e.preventDefault();
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+
+            if (!currentUser) return;
+
+            // Verify current password
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(u => u.id === currentUser.id);
+
+            if (!user || user.password !== currentPassword) {
+                showNotification('Mevcut şifre hatalı!');
+                return;
+            }
+
+            // Check new password match
+            if (newPassword !== confirmPassword) {
+                showNotification('Yeni şifreler eşleşmiyor!');
+                return;
+            }
+
+            // Check new password length
+            if (newPassword.length < 4) {
+                showNotification('Yeni şifre en az 4 karakter olmalı!');
+                return;
+            }
+
+            // Update password
+            const userIndex = users.findIndex(u => u.id === currentUser.id);
+            if (userIndex !== -1) {
+                users[userIndex].password = newPassword;
+                localStorage.setItem('users', JSON.stringify(users));
+
+                // Clear form
+                e.target.reset();
+
+                showNotification('Şifreniz başarıyla değiştirildi!');
+            }
+        }
+
+        function handleLogout(e) {
+            e.preventDefault();
+            sessionStorage.removeItem('currentUser');
+            showNotification('Çıkış yapıldı.');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+
+</html>
