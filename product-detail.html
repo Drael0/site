@@ -53,6 +53,11 @@
                         Sepet
                         <span class="cart-badge" id="cartBadge">0</span>
                     </button>
+                    <button class="theme-toggle" id="themeToggle" title="Tema Değiştir">
+                        <span class="theme-toggle-icon sun">☀️</span>
+                        <span class="theme-toggle-icon moon">🌙</span>
+                        <span class="theme-toggle-slider"></span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -401,18 +406,23 @@
         </div>
     </div>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
     <script src="app.js"></script>
     <script>
         // Product Detail Page Logic
         let currentProduct = null;
         let productReviews = [];
 
-        document.addEventListener('DOMContentLoaded', function () {
-            initProductDetailPage();
+        document.addEventListener('DOMContentLoaded', async function () {
+            await initProductDetailPage();
             setupReviewForm();
         });
 
-        function initProductDetailPage() {
+        async function initProductDetailPage() {
             const urlParams = new URLSearchParams(window.location.search);
             const productId = urlParams.get('id');
 
@@ -420,6 +430,10 @@
                 showProductNotFound();
                 return;
             }
+
+            // Wait for products to load (they come from Firebase now)
+            // Small delay to ensure Firebase auth state is ready
+            await new Promise(resolve => setTimeout(resolve, 500));
 
             // Find product
             currentProduct = products.find(p => p.id === productId);
@@ -430,7 +444,7 @@
             }
 
             // Load reviews
-            loadProductReviews(productId);
+            await loadProductReviews(productId);
 
             // Render product
             renderProductDetail();
@@ -447,12 +461,22 @@
             document.getElementById('productNotFound').classList.remove('hidden');
         }
 
-        function loadProductReviews(productId) {
-            productReviews = JSON.parse(localStorage.getItem(`reviews_${productId}`)) || [];
+        async function loadProductReviews(productId) {
+            try {
+                productReviews = await FirestoreService.getReviews(productId);
+            } catch (error) {
+                console.error('Error loading reviews:', error);
+                productReviews = [];
+            }
         }
 
-        function saveProductReviews(productId) {
-            localStorage.setItem(`reviews_${productId}`, JSON.stringify(productReviews));
+        async function saveProductReview(productId, review) {
+            try {
+                return await FirestoreService.addReview({ productId, ...review });
+            } catch (error) {
+                console.error('Error saving review:', error);
+                return null;
+            }
         }
 
         function renderProductDetail() {

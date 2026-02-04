@@ -1,52 +1,81 @@
 // ============================================
 // State Management
 // ============================================
-let products = JSON.parse(localStorage.getItem('products')) || [];
+let products = [];
 let cart = [];
 let favorites = [];
 let orders = [];
-let currentUser = JSON.parse(sessionStorage.getItem('currentUser')) || null;
+let currentUser = null;
+let isFirebaseReady = false;
 
+// Load products from Firestore
+async function loadProducts() {
+    try {
+        products = await FirestoreService.getProducts();
+        return products;
+    } catch (error) {
+        console.error('Error loading products:', error);
+        return [];
+    }
+}
 
 // Load cart based on current user
-function loadCart() {
+async function loadCart() {
     if (currentUser) {
-        cart = JSON.parse(localStorage.getItem(`cart_${currentUser.id}`)) || [];
+        try {
+            cart = await FirestoreService.getCart(currentUser.id);
+        } catch (error) {
+            console.error('Error loading cart:', error);
+            cart = [];
+        }
     } else {
         cart = JSON.parse(sessionStorage.getItem('guestCart')) || [];
     }
 }
 
 // Load favorites based on current user
-function loadFavorites() {
+async function loadFavorites() {
     if (currentUser) {
-        favorites = JSON.parse(localStorage.getItem(`favorites_${currentUser.id}`)) || [];
+        try {
+            favorites = await FirestoreService.getFavorites(currentUser.id);
+        } catch (error) {
+            console.error('Error loading favorites:', error);
+            favorites = [];
+        }
     } else {
         favorites = [];
     }
 }
 
 // Save favorites
-function saveFavorites() {
+async function saveFavorites() {
     if (currentUser) {
-        localStorage.setItem(`favorites_${currentUser.id}`, JSON.stringify(favorites));
+        try {
+            await FirestoreService.updateFavorites(currentUser.id, favorites);
+        } catch (error) {
+            console.error('Error saving favorites:', error);
+        }
     }
 }
 
 // Load orders based on current user
-function loadOrders() {
+async function loadOrders() {
     if (currentUser) {
-        orders = JSON.parse(localStorage.getItem(`orders_${currentUser.id}`)) || [];
+        try {
+            orders = await FirestoreService.getOrders(currentUser.id);
+        } catch (error) {
+            console.error('Error loading orders:', error);
+            orders = [];
+        }
     } else {
         orders = [];
     }
 }
 
-// Save orders
-function saveOrders() {
-    if (currentUser) {
-        localStorage.setItem(`orders_${currentUser.id}`, JSON.stringify(orders));
-    }
+// Save orders (now handled by FirestoreService.addOrder)
+async function saveOrders() {
+    // Orders are now saved individually via FirestoreService.addOrder
+    // This function is kept for backward compatibility
 }
 
 // ============================================
@@ -172,70 +201,60 @@ const categoryNames = {
 // ============================================
 // Initialization
 // ============================================
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     initTheme();
-    initializeApp();
-    initializeAuth();
-    loadCart();
-    loadFavorites();
-    loadOrders();
-
     setupEventListeners();
     initThemeToggle();
-    detectAndRenderProducts();
-    updateCartBadge();
     setupNavbarScroll();
+
+    // Set up Firebase Auth state listener
+    FirebaseAuthService.onAuthStateChanged(async (user) => {
+        if (user) {
+            // User is signed in
+            currentUser = await FirestoreService.getUser(user.uid);
+            if (!currentUser) {
+                // User exists in Auth but not in Firestore (shouldn't happen normally)
+                currentUser = {
+                    id: user.uid,
+                    email: user.email,
+                    name: user.displayName || 'User',
+                    role: 'user'
+                };
+            }
+        } else {
+            // User is signed out
+            currentUser = null;
+        }
+
+        // Load user-specific data
+        await loadCart();
+        await loadFavorites();
+        await loadOrders();
+
+        updateAuthUI();
+        updateCartBadge();
+
+        // Render products after auth state is known
+        await detectAndRenderProducts();
+    });
+
+    // Initialize products
+    await initializeApp();
 });
 
-function initializeApp() {
-    // Add default products if none exist
-    if (products.length === 0) {
-        products = [
-            {
-                id: generateId(),
-                name: 'Premium JavaScript Kursu',
-                description: 'Sıfırdan ileri seviye JavaScript öğrenin. 50+ saat video içerik, pratik projeler ve sertifika.',
-                price: 299.99,
-                category: 'course',
-                image: ''
-            },
-            {
-                id: generateId(),
-                name: 'Modern Web Tasarım Şablonları',
-                description: '20 adet profesyonel web sitesi şablonu. HTML, CSS ve JavaScript ile hazırlanmış.',
-                price: 149.99,
-                category: 'template',
-                image: ''
-            },
-            {
-                id: generateId(),
-                name: 'Python Programlama E-Kitabı',
-                description: '500+ sayfa kapsamlı Python rehberi. Temel kavramlardan ileri düzey konulara kadar.',
-                price: 79.99,
-                category: 'ebook',
-                image: ''
-            }
-        ];
-        saveProducts();
-    }
+async function initializeApp() {
+    // Load products from Firestore
+    await loadProducts();
 
-    // Default Admin User (seed if empty)
-    const users = AuthService.getUsers();
-    if (users.length === 0) {
-        const adminUser = {
-            id: generateId(),
-            username: 'admin',
-            name: 'System Admin',
-            email: 'admin@digimarket.com',
-            password: 'admin',
-            role: 'admin'
-        };
-        AuthService.saveUser(adminUser);
-        console.log('Default admin created: admin@digimarket.com / admin');
+    // Initialize default products if none exist
+    if (products.length === 0) {
+        await FirestoreService.initializeDefaultProducts();
+        await loadProducts(); // Reload after adding defaults
     }
 }
 
 function initializeAuth() {
+    // Auth is now handled by FirebaseAuthService.onAuthStateChanged
     updateAuthUI();
 }
 
@@ -392,34 +411,38 @@ function updateAuthUI() {
     }
 }
 
-function handleLogin(e) {
+async function handleLogin(e) {
     e.preventDefault();
     const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
 
-    const result = AuthService.login(email, password);
+    // Show loading state
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Giriş yapılıyor...';
+    submitBtn.disabled = true;
 
-    if (result.success) {
-        currentUser = result.user;
-        sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
+    try {
+        const result = await FirebaseAuthService.login(email, password);
 
-        // Load user's data
-        loadCart();
-        loadFavorites();
-        loadOrders();
-        updateCartBadge();
-        renderProducts(); // Re-render to show favorite states
-
-        updateAuthUI();
-        closeLoginModal();
-        showNotification(`Hoşgeldin, ${currentUser.name}!`);
-        e.target.reset();
-    } else {
-        showNotification(result.message);
+        if (result.success) {
+            // Firebase Auth state change will handle the rest via onAuthStateChanged
+            closeLoginModal();
+            showNotification(`Hoşgeldin, ${result.user.name}!`);
+            e.target.reset();
+        } else {
+            showNotification(result.message);
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+        showNotification('Giriş sırasında bir hata oluştu.');
+    } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
     }
 }
 
-function handleRegister(e) {
+async function handleRegister(e) {
     e.preventDefault();
     const username = document.getElementById('registerUsername').value;
     const name = document.getElementById('registerName').value;
@@ -427,47 +450,73 @@ function handleRegister(e) {
     const password = document.getElementById('registerPassword').value;
     const adminCode = document.getElementById('adminCode').value;
 
-    const result = AuthService.register({
-        username,
-        name,
-        email,
-        password,
-        adminCode
-    });
+    // Show loading state
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Kayıt yapılıyor...';
+    submitBtn.disabled = true;
 
-    if (result.success) {
-        // Auto login
-        currentUser = result.user;
-        sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
+    try {
+        // Check if username is already taken
+        const usernameExists = await FirestoreService.checkUsernameExists(username);
+        if (usernameExists) {
+            showNotification('Bu kullanıcı adı zaten alınmış.');
+            return;
+        }
 
-        updateAuthUI();
-        closeRegisterModal();
-        showNotification('Hesap oluşturuldu!');
-        e.target.reset();
-    } else {
-        showNotification(result.message);
+        // Determine role
+        let role = 'user';
+        if (adminCode === ADMIN_CODE_SECRET) {
+            role = 'admin';
+        }
+
+        const result = await FirebaseAuthService.register(email, password, {
+            username,
+            name,
+            role
+        });
+
+        if (result.success) {
+            // Firebase Auth state change will handle the rest via onAuthStateChanged
+            closeRegisterModal();
+            showNotification('Hesap oluşturuldu!');
+            e.target.reset();
+        } else {
+            showNotification(result.message);
+        }
+    } catch (error) {
+        console.error('Registration error:', error);
+        showNotification('Kayıt sırasında bir hata oluştu.');
+    } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
     }
 }
 
-function handleLogout(e) {
+async function handleLogout(e) {
     e.preventDefault();
 
     // Save current cart before logout
-    saveCart();
+    await saveCart();
 
-    // Clear user data for next user
-    cart = [];
-    favorites = [];
-    orders = [];
+    try {
+        await FirebaseAuthService.logout();
 
-    currentUser = null;
-    sessionStorage.removeItem('currentUser');
-    sessionStorage.removeItem('guestCart');
+        // Clear local user data
+        cart = [];
+        favorites = [];
+        orders = [];
+        currentUser = null;
+        sessionStorage.removeItem('guestCart');
 
-    updateCartBadge();
-    updateAuthUI();
-    renderProducts(); // Re-render to clear favorite states
-    showNotification('Çıkış yapıldı.');
+        updateCartBadge();
+        updateAuthUI();
+        renderProducts(); // Re-render to clear favorite states
+        showNotification('Çıkış yapıldı.');
+    } catch (error) {
+        console.error('Logout error:', error);
+        showNotification('Çıkış sırasında bir hata oluştu.');
+    }
 }
 
 
@@ -732,11 +781,10 @@ function renderProducts() {
 }
 
 
-function handleProductSubmit(e) {
+async function handleProductSubmit(e) {
     e.preventDefault();
 
     const product = {
-        id: generateId(),
         name: document.getElementById('productName').value,
         description: document.getElementById('productDescription').value,
         price: parseFloat(document.getElementById('productPrice').value),
@@ -744,32 +792,46 @@ function handleProductSubmit(e) {
         image: document.getElementById('productImage').value
     };
 
-    products.push(product);
-    saveProducts();
-    renderProducts();
-    renderAdminProducts();
-
-    // Reset form
-    e.target.reset();
-
-    // Show success feedback
-    showNotification('Ürün başarıyla eklendi!');
+    try {
+        const newProduct = await FirestoreService.addProduct(product);
+        if (newProduct) {
+            products.push(newProduct);
+            renderProducts();
+            renderAdminProducts();
+            e.target.reset();
+            showNotification('Ürün başarıyla eklendi!');
+        } else {
+            showNotification('Ürün eklenirken bir hata oluştu.');
+        }
+    } catch (error) {
+        console.error('Error adding product:', error);
+        showNotification('Ürün eklenirken bir hata oluştu.');
+    }
 }
 
-function deleteProduct(id) {
+async function deleteProduct(id) {
     if (confirm('Bu ürünü silmek istediğinizden emin misiniz?')) {
-        products = products.filter(p => p.id !== id);
-        saveProducts();
-        renderProducts();
-        renderAdminProducts();
+        try {
+            const success = await FirestoreService.deleteProduct(id);
+            if (success) {
+                products = products.filter(p => p.id !== id);
+                renderProducts();
+                renderAdminProducts();
 
-        // Remove from cart if exists
-        cart = cart.filter(item => item.id !== id);
-        saveCart();
-        renderCart();
-        updateCartBadge();
+                // Remove from cart if exists
+                cart = cart.filter(item => item.id !== id);
+                await saveCart();
+                renderCart();
+                updateCartBadge();
 
-        showNotification('Ürün silindi');
+                showNotification('Ürün silindi');
+            } else {
+                showNotification('Ürün silinirken bir hata oluştu.');
+            }
+        } catch (error) {
+            console.error('Error deleting product:', error);
+            showNotification('Ürün silinirken bir hata oluştu.');
+        }
     }
 }
 
@@ -882,7 +944,7 @@ function createEditProductModal() {
     document.body.insertAdjacentHTML('beforeend', modalHTML);
 }
 
-function handleEditProductSubmit(e) {
+async function handleEditProductSubmit(e) {
     e.preventDefault();
 
     if (!editingProductId) return;
@@ -890,9 +952,7 @@ function handleEditProductSubmit(e) {
     const productIndex = products.findIndex(p => p.id === editingProductId);
     if (productIndex === -1) return;
 
-    // Update product
-    products[productIndex] = {
-        ...products[productIndex],
+    const updatedProduct = {
         name: document.getElementById('editProductName').value,
         description: document.getElementById('editProductDescription').value,
         price: parseFloat(document.getElementById('editProductPrice').value),
@@ -900,19 +960,29 @@ function handleEditProductSubmit(e) {
         image: document.getElementById('editProductImage').value
     };
 
-    saveProducts();
-    renderProducts();
-    renderAdminProducts();
-    closeEditProduct();
-
-    showNotification('Ürün güncellendi!');
+    try {
+        const success = await FirestoreService.updateProduct(editingProductId, updatedProduct);
+        if (success) {
+            // Update local array
+            products[productIndex] = { ...products[productIndex], ...updatedProduct };
+            renderProducts();
+            renderAdminProducts();
+            closeEditProduct();
+            showNotification('Ürün güncellendi!');
+        } else {
+            showNotification('Ürün güncellenirken bir hata oluştu.');
+        }
+    } catch (error) {
+        console.error('Error updating product:', error);
+        showNotification('Ürün güncellenirken bir hata oluştu.');
+    }
 }
 
 
 // ============================================
 // Cart Management
 // ============================================
-function addToCart(productId) {
+async function addToCart(productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
 
@@ -923,15 +993,15 @@ function addToCart(productId) {
         return;
     }
 
-    cart.push({ ...product });
-    saveCart();
+    cart.push({ ...product, quantity: 1 });
+    await saveCart();
     updateCartBadge();
     showNotification('Ürün sepete eklendi!');
 }
 
-function removeFromCart(productId) {
+async function removeFromCart(productId) {
     cart = cart.filter(item => item.id !== productId);
-    saveCart();
+    await saveCart();
     renderCart();
     updateCartBadge();
     showNotification('Ürün sepetten çıkarıldı');
@@ -1002,28 +1072,37 @@ function closeCheckout() {
     document.getElementById('checkoutForm').reset();
 }
 
-function handleCheckoutSubmit(e) {
+async function handleCheckoutSubmit(e) {
     e.preventDefault();
 
     // Create order record
     if (currentUser && cart.length > 0) {
         const order = {
-            id: generateId(),
+            userId: currentUser.id,
             date: new Date().toISOString(),
             items: cart.map(item => ({
+                productId: item.id,
                 name: item.name,
                 price: item.price,
                 quantity: item.quantity
             })),
-            total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)
+            total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+            status: 'completed'
         };
-        orders.push(order);
-        saveOrders();
+
+        try {
+            const savedOrder = await FirestoreService.addOrder(order);
+            if (savedOrder) {
+                orders.push(savedOrder);
+            }
+        } catch (error) {
+            console.error('Error saving order:', error);
+        }
     }
 
     // Clear cart
     cart = [];
-    saveCart();
+    await saveCart();
     updateCartBadge();
 
     // Close checkout and show success
@@ -1072,13 +1151,19 @@ function generateId() {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
 
-function saveProducts() {
-    localStorage.setItem('products', JSON.stringify(products));
+async function saveProducts() {
+    // Products are now saved individually via FirestoreService.addProduct
+    // This function is kept for backward compatibility
+    // For bulk operations, iterate and save each product
 }
 
-function saveCart() {
+async function saveCart() {
     if (currentUser) {
-        localStorage.setItem(`cart_${currentUser.id}`, JSON.stringify(cart));
+        try {
+            await FirestoreService.updateCart(currentUser.id, cart);
+        } catch (error) {
+            console.error('Error saving cart:', error);
+        }
     } else {
         sessionStorage.setItem('guestCart', JSON.stringify(cart));
     }
